@@ -42,18 +42,6 @@ class MyHomePage extends StatelessWidget {
                   SpecialCharacterValidationRule(),
                   MinCharactersValidationRule(6),
                 },
-                validationRulePassedBuilder: (rule) {
-                  return Chip(
-                    backgroundColor: Colors.red,
-                    label: Text(rule),
-                  );
-                },
-                validationRuleNotPassedBuilder: (rule) {
-                  return Chip(
-                    backgroundColor: Colors.blue,
-                    label: Text(rule),
-                  );
-                },
               ),
             ),
           ],

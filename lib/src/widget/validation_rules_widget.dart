@@ -48,11 +48,22 @@ class _ValidationRulesWidgetState extends State<ValidationRulesWidget> {
   }
 
   RuleBuilder getDefaultRulePassedBuilder(String name) => (name) => Chip(
-        label: Text(name),
-        backgroundColor: Colors.green,
+        label: Text(
+          name,
+          style: const TextStyle(
+            color: Colors.green,
+          ),
+        ),
+        backgroundColor: Colors.white,
       );
 
   RuleBuilder getDefaultRuleNotPassedBuilder(String name) => (name) => Chip(
-        label: Text(name),
+        label: Text(
+          name,
+          style: const TextStyle(
+            color: Colors.red,
+          ),
+        ),
+        backgroundColor: Colors.white,
       );
 }
