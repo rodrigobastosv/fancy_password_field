@@ -37,6 +37,9 @@ class MyHomePage extends StatelessWidget {
             SizedBox(
               width: 400,
               child: FancyPasswordField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder()
+                ),
                 validationRules: {
                   UppercaseValidationRule(),
                   SpecialCharacterValidationRule(),
