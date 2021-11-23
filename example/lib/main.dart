@@ -37,9 +37,10 @@ class MyHomePage extends StatelessWidget {
             SizedBox(
               width: 400,
               child: FancyPasswordField(
-                validationRules: const {
-                  ValidationRule.specialCharacter,
-                  ValidationRule.uppercaseLetter,
+                validationRules: {
+                  UppercaseValidationRule(),
+                  SpecialCharacterValidationRule(),
+                  MinCharactersValidationRule(6),
                 },
                 validationRulePassedBuilder: (rule) {
                   return Chip(

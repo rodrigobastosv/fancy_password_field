@@ -1,4 +1,3 @@
-import 'package:fancy_password_field/src/utils.dart';
 import 'package:fancy_password_field/src/validation_rule.dart';
 import 'package:flutter/material.dart';
 import 'package:password_strength/password_strength.dart';
@@ -83,9 +82,9 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           Wrap(
             children: widget.validationRules
                 .map(
-                  (rule) => isRuleSatisfied(value, rule)
-                      ? widget.validationRulePassedBuilder!(rule.toString())
-                      : widget.validationRuleNotPassedBuilder!(rule.toString()),
+                  (rule) => rule.validate(value)
+                      ? widget.validationRulePassedBuilder!(rule.name)
+                      : widget.validationRuleNotPassedBuilder!(rule.name),
                 )
                 .toList(),
           ),
