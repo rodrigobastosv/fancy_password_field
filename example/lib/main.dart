@@ -38,12 +38,12 @@ class MyHomePage extends StatelessWidget {
               width: 400,
               child: FancyPasswordField(
                 validationRules: {
-                  HasDigitValidationRule(),
-                  HasUppercaseValidationRule(),
-                  HasLowercaseValidationRule(),
-                  HasSpecialCharacterValidationRule(),
-                  HasMinCharactersValidationRule(6),
-                  HasMaxCharactersValidationRule(12),
+                  DigitValidationRule(),
+                  UppercaseValidationRule(),
+                  LowercaseValidationRule(),
+                  SpecialCharacterValidationRule(),
+                  MinCharactersValidationRule(6),
+                  MaxCharactersValidationRule(12),
                 },
               ),
             ),

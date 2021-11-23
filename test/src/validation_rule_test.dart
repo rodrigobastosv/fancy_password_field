@@ -3,16 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group(
-    'HasUppercaseValidationRule',
+    'UppercaseValidationRule',
     () {
-      late HasUppercaseValidationRule rule;
+      late UppercaseValidationRule rule;
 
-      setUp(() => rule = HasUppercaseValidationRule());
+      setUp(() => rule = UppercaseValidationRule());
 
       test(
         'name',
         () {
-          expect(rule.name, 'Has uppercase');
+          expect(rule.name, 'Has uppercase letter');
         },
       );
 
@@ -30,16 +30,16 @@ void main() {
   );
 
   group(
-    'HasLowercaseValidationRule',
+    'LowercaseValidationRule',
     () {
-      late HasLowercaseValidationRule rule;
+      late LowercaseValidationRule rule;
 
-      setUp(() => rule = HasLowercaseValidationRule());
+      setUp(() => rule = LowercaseValidationRule());
 
       test(
         'name',
         () {
-          expect(rule.name, 'Has lowercase');
+          expect(rule.name, 'Has lowercase letter');
         },
       );
 
@@ -57,11 +57,11 @@ void main() {
   );
 
   group(
-    'HasDigitValidationRule',
+    'DigitValidationRule',
     () {
-      late HasDigitValidationRule rule;
+      late DigitValidationRule rule;
 
-      setUp(() => rule = HasDigitValidationRule());
+      setUp(() => rule = DigitValidationRule());
 
       test(
         'name',
@@ -84,11 +84,11 @@ void main() {
   );
 
   group(
-    'HasSpecialCharacterValidationRule',
+    'SpecialCharacterValidationRule',
     () {
-      late HasSpecialCharacterValidationRule rule;
+      late SpecialCharacterValidationRule rule;
 
-      setUp(() => rule = HasSpecialCharacterValidationRule());
+      setUp(() => rule = SpecialCharacterValidationRule());
 
       test(
         'name',
@@ -129,23 +129,23 @@ void main() {
   );
 
   group(
-    'HasMinCharactersValidationRule',
+    'MinCharactersValidationRule',
     () {
-      late HasMinCharactersValidationRule rule;
+      late MinCharactersValidationRule rule;
 
       test(
         'assert that min value is greater than 0',
         () {
-          expect(() => HasMinCharactersValidationRule(0), throwsAssertionError);
+          expect(() => MinCharactersValidationRule(0), throwsAssertionError);
           expect(
-              () => HasMinCharactersValidationRule(-1), throwsAssertionError);
+              () => MinCharactersValidationRule(-1), throwsAssertionError);
         },
       );
 
       test(
         'name',
         () {
-          rule = HasMinCharactersValidationRule(6);
+          rule = MinCharactersValidationRule(6);
           expect(rule.name, 'Min of 6 characters');
         },
       );
@@ -153,16 +153,16 @@ void main() {
       test(
         'validate',
         () {
-          rule = HasMinCharactersValidationRule(3);
+          rule = MinCharactersValidationRule(3);
           expect(rule.validate('123'), true);
 
-          rule = HasMinCharactersValidationRule(6);
+          rule = MinCharactersValidationRule(6);
           expect(rule.validate('123456'), true);
 
-          rule = HasMinCharactersValidationRule(3);
+          rule = MinCharactersValidationRule(3);
           expect(rule.validate('1'), false);
 
-          rule = HasMinCharactersValidationRule(6);
+          rule = MinCharactersValidationRule(6);
           expect(rule.validate('123'), false);
         },
       );
@@ -170,23 +170,23 @@ void main() {
   );
 
   group(
-    'HasMaxCharactersValidationRule',
+    'MaxCharactersValidationRule',
     () {
-      late HasMaxCharactersValidationRule rule;
+      late MaxCharactersValidationRule rule;
 
       test(
         'assert that max value is greater than 0',
         () {
-          expect(() => HasMaxCharactersValidationRule(0), throwsAssertionError);
+          expect(() => MaxCharactersValidationRule(0), throwsAssertionError);
           expect(
-              () => HasMaxCharactersValidationRule(-1), throwsAssertionError);
+              () => MaxCharactersValidationRule(-1), throwsAssertionError);
         },
       );
 
       test(
         'name',
         () {
-          rule = HasMaxCharactersValidationRule(6);
+          rule = MaxCharactersValidationRule(6);
           expect(rule.name, 'Max of 6 characters');
         },
       );
@@ -194,18 +194,18 @@ void main() {
       test(
         'validate',
         () {
-          rule = HasMaxCharactersValidationRule(3);
+          rule = MaxCharactersValidationRule(3);
           expect(rule.validate('1'), true);
           expect(rule.validate('12'), true);
           expect(rule.validate('123'), true);
 
-          rule = HasMaxCharactersValidationRule(6);
+          rule = MaxCharactersValidationRule(6);
           expect(rule.validate('123456'), true);
 
-          rule = HasMaxCharactersValidationRule(3);
+          rule = MaxCharactersValidationRule(3);
           expect(rule.validate('1234'), false);
 
-          rule = HasMaxCharactersValidationRule(6);
+          rule = MaxCharactersValidationRule(6);
           expect(rule.validate('1234567'), false);
         },
       );
@@ -213,27 +213,27 @@ void main() {
   );
 
   group(
-    'HasMinAndMaxCharactersValidationRule',
+    'MinAndMaxCharactersValidationRule',
     () {
-      late HasMinAndMaxCharactersValidationRule rule;
+      late MinAndMaxCharactersValidationRule rule;
 
       test(
         'assert that min and max value are greater than 0 and that max value is greater or equal than min value',
         () {
           expect(
-              () => HasMinAndMaxCharactersValidationRule(
+              () => MinAndMaxCharactersValidationRule(
                     min: 0,
                     max: 3,
                   ),
               throwsAssertionError);
           expect(
-              () => HasMinAndMaxCharactersValidationRule(
+              () => MinAndMaxCharactersValidationRule(
                     min: 3,
                     max: 0,
                   ),
               throwsAssertionError);
           expect(
-              () => HasMinAndMaxCharactersValidationRule(
+              () => MinAndMaxCharactersValidationRule(
                     min: 3,
                     max: 1,
                   ),
@@ -244,7 +244,7 @@ void main() {
       test(
         'name',
         () {
-          rule = HasMinAndMaxCharactersValidationRule(
+          rule = MinAndMaxCharactersValidationRule(
             min: 6,
             max: 12,
           );
@@ -255,7 +255,7 @@ void main() {
       test(
         'validate',
         () {
-          rule = HasMinAndMaxCharactersValidationRule(
+          rule = MinAndMaxCharactersValidationRule(
             min: 6,
             max: 12,
           );

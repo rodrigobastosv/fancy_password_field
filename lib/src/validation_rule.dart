@@ -4,9 +4,9 @@ abstract class ValidationRule {
   bool validate(String value);
 }
 
-class HasUppercaseValidationRule extends ValidationRule {
+class UppercaseValidationRule extends ValidationRule {
   @override
-  String get name => 'Has uppercase';
+  String get name => 'Has uppercase letter';
 
   @override
   bool validate(String value) {
@@ -14,9 +14,9 @@ class HasUppercaseValidationRule extends ValidationRule {
   }
 }
 
-class HasLowercaseValidationRule extends ValidationRule {
+class LowercaseValidationRule extends ValidationRule {
   @override
-  String get name => 'Has lowercase';
+  String get name => 'Has lowercase letter';
 
   @override
   bool validate(String value) {
@@ -24,7 +24,7 @@ class HasLowercaseValidationRule extends ValidationRule {
   }
 }
 
-class HasDigitValidationRule extends ValidationRule {
+class DigitValidationRule extends ValidationRule {
   @override
   String get name => 'Has digit';
 
@@ -34,7 +34,7 @@ class HasDigitValidationRule extends ValidationRule {
   }
 }
 
-class HasSpecialCharacterValidationRule extends ValidationRule {
+class SpecialCharacterValidationRule extends ValidationRule {
   @override
   String get name => 'Has special character';
 
@@ -44,8 +44,8 @@ class HasSpecialCharacterValidationRule extends ValidationRule {
   }
 }
 
-class HasMinCharactersValidationRule extends ValidationRule {
-  HasMinCharactersValidationRule(this.numberOfCharacters)
+class MinCharactersValidationRule extends ValidationRule {
+  MinCharactersValidationRule(this.numberOfCharacters)
       : assert(numberOfCharacters > 0);
 
   final int numberOfCharacters;
@@ -59,8 +59,8 @@ class HasMinCharactersValidationRule extends ValidationRule {
   }
 }
 
-class HasMaxCharactersValidationRule extends ValidationRule {
-  HasMaxCharactersValidationRule(this.numberOfCharacters)
+class MaxCharactersValidationRule extends ValidationRule {
+  MaxCharactersValidationRule(this.numberOfCharacters)
       : assert(numberOfCharacters > 0);
 
   final int numberOfCharacters;
@@ -74,8 +74,8 @@ class HasMaxCharactersValidationRule extends ValidationRule {
   }
 }
 
-class HasMinAndMaxCharactersValidationRule extends ValidationRule {
-  HasMinAndMaxCharactersValidationRule({
+class MinAndMaxCharactersValidationRule extends ValidationRule {
+  MinAndMaxCharactersValidationRule({
     required this.min,
     required this.max,
   })  : assert(min > 0),

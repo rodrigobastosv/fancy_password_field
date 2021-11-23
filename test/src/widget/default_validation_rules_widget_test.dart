@@ -41,7 +41,7 @@ void main() {
         tester,
         value: 'Test',
         rules: {
-          HasUppercaseValidationRule(),
+          UppercaseValidationRule(),
         },
       );
 
@@ -56,7 +56,7 @@ void main() {
         tester,
         value: 'test',
         rules: {
-          HasUppercaseValidationRule(),
+          UppercaseValidationRule(),
         },
       );
 

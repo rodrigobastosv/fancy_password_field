@@ -116,8 +116,8 @@ void main() {
         tester,
         widget: FancyPasswordField(
           validationRules: {
-            HasUppercaseValidationRule(),
-            HasLowercaseValidationRule(),
+            UppercaseValidationRule(),
+            LowercaseValidationRule(),
           },
         ),
       );

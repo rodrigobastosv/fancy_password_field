@@ -21,9 +21,9 @@ void main() {
     'setRules should set the given rules',
     () {
       passwordController.setRules({
-        HasUppercaseValidationRule(),
+        UppercaseValidationRule(),
       });
-      expect(passwordController.rules.first, isA<HasUppercaseValidationRule>());
+      expect(passwordController.rules.first, isA<UppercaseValidationRule>());
     },
   );
 
@@ -34,8 +34,8 @@ void main() {
         'onChange should validate rules and result to no ofending rules',
         () {
           passwordController.setRules({
-            HasUppercaseValidationRule(),
-            HasLowercaseValidationRule(),
+            UppercaseValidationRule(),
+            LowercaseValidationRule(),
           });
 
           passwordController.onChange('Aa');
@@ -51,15 +51,15 @@ void main() {
         'onChange should validate rules and result to a ofending rule',
         () {
           passwordController.setRules({
-            HasUppercaseValidationRule(),
-            HasLowercaseValidationRule(),
+            UppercaseValidationRule(),
+            LowercaseValidationRule(),
           });
 
           passwordController.onChange('A');
 
           expect(
             passwordController.ofendingRules.first,
-            isA<HasLowercaseValidationRule>(),
+            isA<LowercaseValidationRule>(),
           );
         },
       );
