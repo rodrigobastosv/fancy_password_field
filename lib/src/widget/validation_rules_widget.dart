@@ -4,7 +4,9 @@ import '../validation_rule.dart';
 import 'widget.dart';
 
 typedef ValidationRulesBuilder = Widget Function(
-    Set<ValidationRule> rules, String value);
+  Set<ValidationRule> rules,
+  String value,
+);
 
 class ValidationRulesWidget extends StatelessWidget {
   const ValidationRulesWidget({
@@ -20,15 +22,14 @@ class ValidationRulesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return validationRuleBuilder != null ?
-            validationRuleBuilder!(
-              validationRules,
-              password,
-            )
-          :
-            DefaultValidationRulesWidget(
-              value: password,
-              validationRules: validationRules,
-            );
+    return validationRuleBuilder != null
+        ? validationRuleBuilder!(
+            validationRules,
+            password,
+          )
+        : DefaultValidationRulesWidget(
+            value: password,
+            validationRules: validationRules,
+          );
   }
 }

@@ -8,8 +8,6 @@ class FancyPasswordField extends StatefulWidget {
   const FancyPasswordField({
     Key? key,
     this.onChanged,
-    this.onEditingComplete,
-    this.onFieldSubmitted,
     this.onSaved,
     this.validator,
     this.decoration,
@@ -24,8 +22,6 @@ class FancyPasswordField extends StatefulWidget {
   }) : super(key: key);
 
   final ValueChanged<String>? onChanged;
-  final VoidCallback? onEditingComplete;
-  final ValueChanged<String>? onFieldSubmitted;
   final FormFieldSetter<String>? onSaved;
   final FormFieldValidator<String>? validator;
   final InputDecoration? decoration;
@@ -88,16 +84,6 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           onSaved: (value) {
             if (widget.onSaved != null) {
               widget.onSaved!(value);
-            }
-          },
-          onFieldSubmitted: (value) {
-            if (widget.onFieldSubmitted != null) {
-              widget.onFieldSubmitted!(value);
-            }
-          },
-          onEditingComplete: () {
-            if (widget.onEditingComplete != null) {
-              widget.onEditingComplete!();
             }
           },
           validator: (value) {
