@@ -13,6 +13,9 @@ class FancyPasswordField extends StatefulWidget {
     this.validator,
     this.decoration,
     this.validationRules = const {},
+    this.hasShowHidePassword = true,
+    this.showPasswordIcon,
+    this.hidePasswordIcon,
     this.hasStrengthIndicator = true,
     this.strengthIndicatorBuilder,
     this.validationRulePassedBuilder,
@@ -23,6 +26,9 @@ class FancyPasswordField extends StatefulWidget {
   final String? Function(String?)? validator;
   final InputDecoration? decoration;
   final Set<ValidationRule> validationRules;
+  final bool hasShowHidePassword;
+  final IconData? showPasswordIcon;
+  final IconData? hidePasswordIcon;
   final bool hasStrengthIndicator;
   final StrengthIndicatorBuilder? strengthIndicatorBuilder;
   final RuleBuilder? validationRulePassedBuilder;
@@ -51,12 +57,16 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           controller: valueController,
           decoration: widget.decoration ??
               InputDecoration(
-                suffixIcon: DefaultShowHidePasswordButton(
-                  hidePassword: hidePassword,
-                  onPressed: () {
-                    setState(() => hidePassword = !hidePassword);
-                  },
-                ),
+                suffixIcon: widget.hasShowHidePassword
+                    ? DefaultShowHidePasswordButton(
+                        hidePassword: hidePassword,
+                        showPasswordIcon: widget.showPasswordIcon,
+                        hidePasswordIcon: widget.hidePasswordIcon,
+                        onPressed: () {
+                          setState(() => hidePassword = !hidePassword);
+                        },
+                      )
+                    : null,
               ),
           obscureText: hidePassword,
           onChanged: (changedValue) {
