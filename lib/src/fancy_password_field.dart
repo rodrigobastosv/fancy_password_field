@@ -1,3 +1,4 @@
+import 'package:fancy_password_field/src/fancy_password_controller.dart';
 import 'package:fancy_password_field/src/validation_rule.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class FancyPasswordField extends StatefulWidget {
     this.hasStrengthIndicator = true,
     this.strengthIndicatorBuilder,
     this.validationRuleBuilder,
+    this.passwordController,
   }) : super(key: key);
 
   final ValueChanged<String>? onChanged;
@@ -34,6 +36,7 @@ class FancyPasswordField extends StatefulWidget {
   final bool hasStrengthIndicator;
   final StrengthIndicatorBuilder? strengthIndicatorBuilder;
   final ValidationRulesBuilder? validationRuleBuilder;
+  final FancyPasswordController? passwordController;
 
   @override
   State<FancyPasswordField> createState() => _FancyPasswordFieldState();
@@ -43,10 +46,14 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
   String value = '';
   bool hidePassword = true;
   late TextEditingController valueController;
+  late FancyPasswordController passwordController;
 
   @override
   void initState() {
     valueController = TextEditingController();
+    passwordController = (widget.passwordController ??
+        FancyPasswordController())
+      ..setRules(widget.validationRules);
     super.initState();
   }
 
@@ -75,6 +82,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
             if (widget.onChanged != null) {
               widget.onChanged!(changedValue);
             }
+            passwordController.onChange(changedValue);
             setState(() {});
           },
           onSaved: (value) {
