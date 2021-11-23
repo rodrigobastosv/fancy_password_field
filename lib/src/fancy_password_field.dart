@@ -1,12 +1,7 @@
 import 'package:fancy_password_field/src/validation_rule.dart';
 import 'package:flutter/material.dart';
-import 'package:password_strength/password_strength.dart';
 
 import 'widget/widget.dart';
-
-typedef StrengthIndicatorBuilder = Widget Function(double strength);
-typedef ValidationRulesBuilder = Widget Function(
-    Set<ValidationRule> rules, String value);
 
 class FancyPasswordField extends StatefulWidget {
   const FancyPasswordField({
@@ -104,25 +99,16 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           },
         ),
         if (widget.hasStrengthIndicator && value.isNotEmpty)
-          if (widget.strengthIndicatorBuilder != null)
-            widget.strengthIndicatorBuilder!(
-              estimatePasswordStrength(valueController.text),
-            )
-          else
-            DefaultStrengthIndicator(
-              estimatePasswordStrength(valueController.text),
-            ),
+          StrengthIndicatorWidget(
+            password: value,
+            strengthIndicatorBuilder: widget.strengthIndicatorBuilder,
+          ),
         if (widget.validationRules.isNotEmpty)
-          if (widget.validationRuleBuilder != null)
-            widget.validationRuleBuilder!(
-              widget.validationRules,
-              valueController.text,
-            )
-          else
-            DefaultValidationRulesWidget(
-              value: value,
-              validationRules: widget.validationRules,
-            ),
+          ValidationRulesWidget(
+            password: value,
+            validationRules: widget.validationRules,
+            validationRuleBuilder: widget.validationRuleBuilder,
+          ),
       ],
     );
   }
