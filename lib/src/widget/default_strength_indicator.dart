@@ -1,24 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:password_strength/password_strength.dart';
 
 class DefaultStrengthIndicator extends StatelessWidget {
-  const DefaultStrengthIndicator({
+  const DefaultStrengthIndicator(
+    this.strength, {
     Key? key,
-    required this.password,
   }) : super(key: key);
 
-  final String password;
+  final double strength;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 12),
+        Text(
+          _getPasswordStrengthLabel(),
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: _getPasswordStrengthColor(),
+          ),
+        ),
+        const SizedBox(height: 6),
         LinearProgressIndicator(
-          value: estimatePasswordStrength(password),
+          value: strength,
+          valueColor: AlwaysStoppedAnimation<Color>(
+            _getPasswordStrengthColor(),
+          ),
+          backgroundColor: Colors.white,
         ),
         const SizedBox(height: 12),
       ],
     );
+  }
+
+  String _getPasswordStrengthLabel() {
+    if (strength < .25) {
+      return 'Weak';
+    } else if (strength < .5) {
+      return 'Fair';
+    } else if (strength < .75) {
+      return 'Good';
+    }
+    return 'Strong';
+  }
+
+  Color _getPasswordStrengthColor() {
+    if (strength < .25) {
+      return Colors.red;
+    } else if (strength < .5) {
+      return Colors.yellow;
+    } else if (strength < .75) {
+      return Colors.blue;
+    }
+    return Colors.green;
   }
 }

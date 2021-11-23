@@ -10,6 +10,9 @@ class FancyPasswordField extends StatefulWidget {
   const FancyPasswordField({
     Key? key,
     this.onChanged,
+    this.onEditingComplete,
+    this.onFieldSubmitted,
+    this.onSaved,
     this.validator,
     this.decoration,
     this.validationRules = const {},
@@ -23,7 +26,10 @@ class FancyPasswordField extends StatefulWidget {
   }) : super(key: key);
 
   final ValueChanged<String>? onChanged;
-  final String? Function(String?)? validator;
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onFieldSubmitted;
+  final FormFieldSetter<String>? onSaved;
+  final FormFieldValidator<String>? validator;
   final InputDecoration? decoration;
   final Set<ValidationRule> validationRules;
   final bool hasShowHidePassword;
@@ -76,6 +82,21 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
             }
             setState(() {});
           },
+          onSaved: (value) {
+            if (widget.onSaved != null) {
+              widget.onSaved!(value);
+            }
+          },
+          onFieldSubmitted: (value) {
+            if (widget.onFieldSubmitted != null) {
+              widget.onFieldSubmitted!(value);
+            }
+          },
+          onEditingComplete: () {
+            if (widget.onEditingComplete != null) {
+              widget.onEditingComplete!();
+            }
+          },
           validator: (value) {
             if (widget.validator != null) {
               widget.validator!(value);
@@ -88,7 +109,9 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
               estimatePasswordStrength(valueController.text),
             )
           else
-            DefaultStrengthIndicator(password: valueController.text),
+            DefaultStrengthIndicator(
+              estimatePasswordStrength(valueController.text),
+            ),
         if (widget.validationRules.isNotEmpty)
           ValidationRulesWidget(
             value: value,
