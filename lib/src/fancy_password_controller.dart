@@ -5,14 +5,14 @@ class FancyPasswordController extends ChangeNotifier {
   FancyPasswordController();
 
   late Set<ValidationRule> _rules;
-  late Set<ValidationRule> _ofendingRules;
+  final Set<ValidationRule> _ofendingRules = {};
 
+  List<ValidationRule> get rules => _rules.toList();
   List<ValidationRule> get ofendingRules => _ofendingRules.toList();
   bool get areAllRulesValidated => _ofendingRules.isEmpty;
 
   void setRules(Set<ValidationRule> rules) {
     _rules = rules;
-    _ofendingRules = {};
   }
 
   void onChange(String value) {
