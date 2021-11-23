@@ -71,3 +71,21 @@ class HasMaxCharactersValidationRule extends ValidationRule {
     return value.length <= numberOfCharacters;
   }
 }
+
+class HasMinAndMaxCharactersValidationRule extends ValidationRule {
+  HasMinAndMaxCharactersValidationRule({
+    required this.min,
+    required this.max,
+  });
+
+  final int min;
+  final int max;
+
+  @override
+  String get name => 'Min $min and Max $max characters';
+
+  @override
+  bool validate(String value) {
+    return value.length >= min && value.length <= max;
+  }
+}

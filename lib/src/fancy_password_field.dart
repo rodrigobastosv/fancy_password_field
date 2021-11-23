@@ -5,6 +5,8 @@ import 'package:password_strength/password_strength.dart';
 import 'widget/widget.dart';
 
 typedef StrengthIndicatorBuilder = Widget Function(double strength);
+typedef ValidationRulesBuilder = Widget Function(
+    Set<ValidationRule> rules, String value);
 
 class FancyPasswordField extends StatefulWidget {
   const FancyPasswordField({
@@ -21,8 +23,7 @@ class FancyPasswordField extends StatefulWidget {
     this.hidePasswordIcon,
     this.hasStrengthIndicator = true,
     this.strengthIndicatorBuilder,
-    this.validationRulePassedBuilder,
-    this.validationRuleNotPassedBuilder,
+    this.validationRuleBuilder,
   }) : super(key: key);
 
   final ValueChanged<String>? onChanged;
@@ -37,8 +38,7 @@ class FancyPasswordField extends StatefulWidget {
   final IconData? hidePasswordIcon;
   final bool hasStrengthIndicator;
   final StrengthIndicatorBuilder? strengthIndicatorBuilder;
-  final RuleBuilder? validationRulePassedBuilder;
-  final RuleBuilder? validationRuleNotPassedBuilder;
+  final ValidationRulesBuilder? validationRuleBuilder;
 
   @override
   State<FancyPasswordField> createState() => _FancyPasswordFieldState();
@@ -113,13 +113,16 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
               estimatePasswordStrength(valueController.text),
             ),
         if (widget.validationRules.isNotEmpty)
-          ValidationRulesWidget(
-            value: value,
-            validationRules: widget.validationRules,
-            validationRulePassedBuilder: widget.validationRulePassedBuilder,
-            validationRuleNotPassedBuilder:
-                widget.validationRuleNotPassedBuilder,
-          ),
+          if (widget.validationRuleBuilder != null)
+            widget.validationRuleBuilder!(
+              widget.validationRules,
+              valueController.text,
+            )
+          else
+            DefaultValidationRulesWidget(
+              value: value,
+              validationRules: widget.validationRules,
+            ),
       ],
     );
   }
