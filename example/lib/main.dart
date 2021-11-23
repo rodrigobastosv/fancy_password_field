@@ -44,13 +44,13 @@ class MyHomePage extends StatelessWidget {
                 },
                 validationRulePassedBuilder: (rule) {
                   return Chip(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.red,
                     label: Text(rule),
                   );
                 },
                 validationRuleNotPassedBuilder: (rule) {
                   return Chip(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.blue,
                     label: Text(rule),
                   );
                 },
