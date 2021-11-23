@@ -99,11 +99,11 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           },
           validator: (value) {
             if (widget.validator != null) {
-              widget.validator!(value);
+              return widget.validator!(value);
             }
           },
         ),
-        if (widget.hasStrengthIndicator)
+        if (widget.hasStrengthIndicator && value.isNotEmpty)
           if (widget.strengthIndicatorBuilder != null)
             widget.strengthIndicatorBuilder!(
               estimatePasswordStrength(valueController.text),

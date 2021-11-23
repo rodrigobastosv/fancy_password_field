@@ -36,14 +36,20 @@ class _ValidationRulesWidgetState extends State<ValidationRulesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: widget.validationRules
-          .map(
-            (rule) => rule.validate(widget.value)
-                ? validationRulePassedBuilder(rule.name)
-                : validationRuleNotPassedBuilder(rule.name),
-          )
-          .toList(),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 6),
+        Wrap(
+          children: widget.validationRules
+              .map(
+                (rule) => rule.validate(widget.value)
+                    ? validationRulePassedBuilder(rule.name)
+                    : validationRuleNotPassedBuilder(rule.name),
+              )
+              .toList(),
+        ),
+      ],
     );
   }
 
