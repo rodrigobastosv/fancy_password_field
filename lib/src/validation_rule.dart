@@ -1,0 +1,4 @@
+enum ValidationRule {
+  uppercaseLetter,
+  specialCharacter,
+}
