@@ -2,23 +2,30 @@ import 'package:fancy_password_field/src/validation_rule.dart';
 import 'package:flutter/material.dart';
 import 'package:password_strength/password_strength.dart';
 
-typedef RuleBuilder = Widget Function(String);
+import 'widget/widget.dart';
+
+typedef RuleBuilder = Widget Function(String ruleName);
+typedef StrengthIndicatorBuilder = Widget Function(double strength);
 
 class FancyPasswordField extends StatefulWidget {
   const FancyPasswordField({
     Key? key,
+    this.onChanged,
     this.validator,
     this.decoration,
     this.validationRules = const {},
     this.hasStrengthIndicator = true,
+    this.strengthIndicatorBuilder,
     this.validationRulePassedBuilder,
     this.validationRuleNotPassedBuilder,
   }) : super(key: key);
 
+  final ValueChanged<String>? onChanged;
   final String? Function(String?)? validator;
   final InputDecoration? decoration;
   final Set<ValidationRule> validationRules;
   final bool hasStrengthIndicator;
+  final StrengthIndicatorBuilder? strengthIndicatorBuilder;
   final RuleBuilder? validationRulePassedBuilder;
   final RuleBuilder? validationRuleNotPassedBuilder;
 
@@ -45,24 +52,19 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           controller: valueController,
           decoration: widget.decoration ??
               InputDecoration(
-                suffixIcon: IconButton(
+                suffixIcon: DefaultShowHidePasswordButton(
+                  hidePassword: hidePassword,
                   onPressed: () {
-                    setState(() {
-                      hidePassword = !hidePassword;
-                    });
+                    setState(() => hidePassword = !hidePassword);
                   },
-                  icon: hidePassword
-                      ? const Icon(
-                          Icons.remove_red_eye,
-                        )
-                      : const Icon(
-                          Icons.panorama_fish_eye,
-                        ),
                 ),
               ),
-              obscureText: hidePassword,
-          onChanged: (value) {
-            this.value = value;
+          obscureText: hidePassword,
+          onChanged: (changedValue) {
+            value = changedValue;
+            if (widget.onChanged != null) {
+              widget.onChanged!(changedValue);
+            }
             setState(() {});
           },
           validator: (value) {
@@ -71,13 +73,13 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
             }
           },
         ),
-        if (widget.hasStrengthIndicator) ...[
-          const SizedBox(height: 12),
-          LinearProgressIndicator(
-            value: estimatePasswordStrength(valueController.text),
-          ),
-          const SizedBox(height: 12),
-        ],
+        if (widget.hasStrengthIndicator)
+          if (widget.strengthIndicatorBuilder != null)
+            widget.strengthIndicatorBuilder!(
+              estimatePasswordStrength(valueController.text),
+            )
+          else
+            DefaultStrengthIndicator(password: valueController.text),
         if (widget.validationRules.isNotEmpty)
           Wrap(
             children: widget.validationRules
