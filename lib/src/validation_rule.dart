@@ -45,7 +45,8 @@ class HasSpecialCharacterValidationRule extends ValidationRule {
 }
 
 class HasMinCharactersValidationRule extends ValidationRule {
-  HasMinCharactersValidationRule(this.numberOfCharacters);
+  HasMinCharactersValidationRule(this.numberOfCharacters)
+      : assert(numberOfCharacters > 0);
 
   final int numberOfCharacters;
 
@@ -59,7 +60,8 @@ class HasMinCharactersValidationRule extends ValidationRule {
 }
 
 class HasMaxCharactersValidationRule extends ValidationRule {
-  HasMaxCharactersValidationRule(this.numberOfCharacters);
+  HasMaxCharactersValidationRule(this.numberOfCharacters)
+      : assert(numberOfCharacters > 0);
 
   final int numberOfCharacters;
 
@@ -76,7 +78,9 @@ class HasMinAndMaxCharactersValidationRule extends ValidationRule {
   HasMinAndMaxCharactersValidationRule({
     required this.min,
     required this.max,
-  });
+  })  : assert(min > 0),
+        assert(max > 0),
+        assert(max >= min);
 
   final int min;
   final int max;
@@ -86,6 +90,7 @@ class HasMinAndMaxCharactersValidationRule extends ValidationRule {
 
   @override
   bool validate(String value) {
-    return value.length >= min && value.length <= max;
+    return (value.length >= min && value.length < max) ||
+        (value.length > min && value.length <= max);
   }
 }

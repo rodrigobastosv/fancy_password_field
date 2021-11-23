@@ -1,0 +1,4 @@
+tests:
+  - fvm flutter test --no-pub --coverage --test-randomize-ordering-seed random
+  - genhtml coverage/lcov.info -o coverage/html
+  - google-chrome coverage/html/index.html &
