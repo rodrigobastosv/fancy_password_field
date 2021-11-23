@@ -45,6 +45,52 @@ class MyHomePage extends StatelessWidget {
                   MinCharactersValidationRule(6),
                   MaxCharactersValidationRule(12),
                 },
+                strengthIndicatorBuilder: (strength) => Text(
+                  strength.toString(),
+                ),
+                validationRuleBuilder: (rules, value) {
+                  if (value.isEmpty) {
+                    return const SizedBox.shrink();
+                  }
+                  return ListView(
+                    shrinkWrap: true,
+                    children: rules
+                        .map(
+                          (rule) => rule.validate(value)
+                              ? Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.check,
+                                      color: Colors.green,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Text(
+                                      rule.name,
+                                      style: const TextStyle(
+                                        color: Colors.green,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.close,
+                                      color: Colors.red,
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Text(
+                                      rule.name,
+                                      style: const TextStyle(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                        )
+                        .toList(),
+                  );
+                },
               ),
             ),
           ],
