@@ -11,25 +11,28 @@ typedef ValidationRulesBuilder = Widget Function(
 class ValidationRulesWidget extends StatelessWidget {
   const ValidationRulesWidget({
     Key? key,
-    required this.password,
-    required this.validationRules,
-    this.validationRuleBuilder,
-  }) : super(key: key);
+    required String password,
+    required Set<ValidationRule> validationRules,
+    ValidationRulesBuilder? validationRuleBuilder,
+  })  : _password = password,
+        _validationRules = validationRules,
+        _validationRuleBuilder = validationRuleBuilder,
+        super(key: key);
 
-  final String password;
-  final Set<ValidationRule> validationRules;
-  final ValidationRulesBuilder? validationRuleBuilder;
+  final String _password;
+  final Set<ValidationRule> _validationRules;
+  final ValidationRulesBuilder? _validationRuleBuilder;
 
   @override
   Widget build(BuildContext context) {
-    return validationRuleBuilder != null
-        ? validationRuleBuilder!(
-            validationRules,
-            password,
+    return _validationRuleBuilder != null
+        ? _validationRuleBuilder!(
+            _validationRules,
+            _password,
           )
         : DefaultValidationRulesWidget(
-            value: password,
-            validationRules: validationRules,
+            value: _password,
+            validationRules: _validationRules,
           );
   }
 }

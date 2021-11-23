@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class DefaultStrengthIndicator extends StatelessWidget {
   const DefaultStrengthIndicator(
-    this.strength, {
+    this._strength, {
     Key? key,
   }) : super(key: key);
 
-  final double strength;
+  final double _strength;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class DefaultStrengthIndicator extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         LinearProgressIndicator(
-          value: strength,
+          value: _strength,
           valueColor: AlwaysStoppedAnimation<Color>(
             _getPasswordStrengthColor(),
           ),
@@ -34,22 +34,22 @@ class DefaultStrengthIndicator extends StatelessWidget {
   }
 
   String _getPasswordStrengthLabel() {
-    if (strength < .25) {
+    if (_strength < .25) {
       return 'Weak';
-    } else if (strength < .5) {
+    } else if (_strength < .5) {
       return 'Fair';
-    } else if (strength < .75) {
+    } else if (_strength < .75) {
       return 'Good';
     }
     return 'Strong';
   }
 
   Color _getPasswordStrengthColor() {
-    if (strength < .25) {
+    if (_strength < .25) {
       return Colors.red;
-    } else if (strength < .5) {
+    } else if (_strength < .5) {
       return Colors.yellow;
-    } else if (strength < .75) {
+    } else if (_strength < .75) {
       return Colors.blue;
     }
     return Colors.green;

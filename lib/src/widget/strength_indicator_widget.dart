@@ -8,21 +8,23 @@ typedef StrengthIndicatorBuilder = Widget Function(double strength);
 class StrengthIndicatorWidget extends StatelessWidget {
   const StrengthIndicatorWidget({
     Key? key,
-    required this.password,
-    this.strengthIndicatorBuilder,
-  }) : super(key: key);
+    required String password,
+    StrengthIndicatorBuilder? strengthIndicatorBuilder,
+  })  : _password = password,
+        _strengthIndicatorBuilder = strengthIndicatorBuilder,
+        super(key: key);
 
-  final String password;
-  final StrengthIndicatorBuilder? strengthIndicatorBuilder;
+  final String _password;
+  final StrengthIndicatorBuilder? _strengthIndicatorBuilder;
 
   @override
   Widget build(BuildContext context) {
-    return strengthIndicatorBuilder != null
-        ? strengthIndicatorBuilder!(
-            estimatePasswordStrength(password),
+    return _strengthIndicatorBuilder != null
+        ? _strengthIndicatorBuilder!(
+            estimatePasswordStrength(_password),
           )
         : DefaultStrengthIndicator(
-            estimatePasswordStrength(password),
+            estimatePasswordStrength(_password),
           );
   }
 }

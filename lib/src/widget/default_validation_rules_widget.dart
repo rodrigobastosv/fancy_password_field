@@ -6,12 +6,14 @@ typedef RuleBuilder = Widget Function(String ruleName);
 class DefaultValidationRulesWidget extends StatelessWidget {
   const DefaultValidationRulesWidget({
     Key? key,
-    required this.value,
-    required this.validationRules,
-  }) : super(key: key);
+    required String value,
+    required Set<ValidationRule> validationRules,
+  })  : _value = value,
+        _validationRules = validationRules,
+        super(key: key);
 
-  final String value;
-  final Set<ValidationRule> validationRules;
+  final String _value;
+  final Set<ValidationRule> _validationRules;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,9 @@ class DefaultValidationRulesWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 6),
         Wrap(
-          children: validationRules
+          children: _validationRules
               .map(
-                (rule) => rule.validate(value) && value.isNotEmpty
+                (rule) => rule.validate(_value) && _value.isNotEmpty
                     ? DefaultRulePassedWidget(rule.name)
                     : DefaultRuleNotPassedWidget(rule.name),
               )
