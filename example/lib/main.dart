@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
+            /// Change this to one of the available samples on the samples folder
             Sample1(),
           ],
         ),

@@ -27,7 +27,6 @@ above the form field. You can disabled this behavior passing false to the `hasSt
 
 ![enter image description here](https://i.giphy.com/media/2eHU0w7uUtPqSUhSj0/giphy.webp)
 
-
 We can go a bit further and pass some validations rules to our widget.
 
 ```dart
@@ -55,8 +54,7 @@ class MyApp extends StatelessWidget {
 
 ![enter image description here](https://i.giphy.com/media/Fk2MM3oN114FevAx8C/giphy.webp)
 
-These package comes if some pre defined commom rules so you can just use out of the box. Feel free to implement your own 
-[ValidationRule] and adds normaly to the password field.
+These package comes if some pre defined commom rules so you can just use out of the box. Feel free to implement your own [ValidationRule] and adds normaly to the password field.
 
 # Custom Rules
 As described earlier, the package comes with built in commom used rules, but you can create your own custom rules. To do this, just extends the base [ValidationRule] abstract class. You'll have to provide a name and a validation function for your rule.
@@ -116,11 +114,13 @@ Widget build(BuildContext context) {
 ```
 
 # Customization
-The [FancyPasswordField] comes with some pre defined widget that show some okish good looking components for the rules
+The [FancyPasswordField] comes with some pre defined widget that show some okish good looking components for the strenght indicator
 and for the rules. But the widget was designed to be fully customizable. So you can pass your own builers to both the
 strength password widget and the rules widget. 
 
-Above we can see an example of some possible customisation for these fields.
+On the [Samples](#samples) section you can grab a lot of customizations samples.
+
+Above we can see an example of some possible customization for these fields.
 
 ```dart
 class MyApp extends StatelessWidget {
@@ -199,6 +199,7 @@ class MyApp extends StatelessWidget {
 ## Samples
 ![Sample 1](assets/sample1.png)
 ![Sample 2](assets/sample2.png)
+![Sample 3](assets/sample3.png)
 
 ## Suggestions & Bugs
 
