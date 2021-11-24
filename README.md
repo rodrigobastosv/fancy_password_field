@@ -197,9 +197,9 @@ class MyApp extends StatelessWidget {
 ![enter image description here](https://i.giphy.com/media/RhyiZH8ksw7BUi4Qwi/giphy.webp)
 
 ## Samples
-![Sample 1](./assets/sample1.png)
-![Sample 2](./assets/sample2.png)
-![Sample 3](./assets/sample3.png)
+![Sample 1](sample1.png)
+![Sample 2](sample2.png)
+![Sample 3](sample3.png)
 
 ## Suggestions & Bugs
 
