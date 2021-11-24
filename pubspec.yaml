@@ -1,6 +1,6 @@
 name: fancy_password_field
 description: A highly customizable password control input widget.
-version: 1.0.0+5
+version: 1.0.0+6
 repository: https://github.com/rodrigobastosv/fancy_password_field
 
 environment:

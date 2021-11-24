@@ -1,3 +1,7 @@
+# 1.0.0+6
+
+- Adjusting README
+
 # 1.0.0+5
 
 - Adding one more sample to samples section
