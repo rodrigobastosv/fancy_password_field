@@ -1,3 +1,7 @@
+# 1.0.0+5
+
+- Adding one more sample to samples section
+
 # 1.0.0+4
 
 - Adjusting package description
