@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
 This will create a password field with some default configurations. The default behavior is to show the strength indicator
 above the form field. You can disabled this behavior passing false to the `hasStrengthIndicator` property.
 
----first use---
+![enter image description here](https://i.giphy.com/media/2eHU0w7uUtPqSUhSj0/giphy.webp)
+
 
 We can go a bit further and pass some validations rules to our widget.
 
@@ -52,10 +53,67 @@ class MyApp extends StatelessWidget {
 }
 ```
 
----rules usage---
+![enter image description here](https://i.giphy.com/media/Fk2MM3oN114FevAx8C/giphy.webp)
 
 These package comes if some pre defined commom rules so you can just use out of the box. Feel free to implement your own 
 [ValidationRule] and adds normaly to the password field.
+
+# Custom Rules
+As described earlier, the package comes with built in commom used rules, but you can create your own custom rules. To do this, just extends the base [ValidationRule] abstract class. You'll have to provide a name and a validation function for your rule.
+
+```dart
+class ContainsTripleAValidationRule extends ValidationRule {
+  @override
+  String get name => 'Contains AAA';
+
+  @override
+  bool validate(String value) {
+    return value.contains('AAA');
+  }
+}
+```
+
+Just doing that is already enough for your rule just work. Pass your rule to the [validationRules] set of the [FancyPasswordField] and the showing and validation of the rules will occur. 
+
+# Password Controller
+The [FancyPasswordField] has a controller that you can pass. The purpose of this controller is almost the same as any controller on the Flutter world. The controller gives you access to underline info of the field. Notably, it gives you information about the rules and what rules are beeing ofended at any point. The controller has also one getter that indicates whether all rules are ok or not.
+
+One use case of this is if you want to validate the status of the form field to enable or disable the saving of a form.
+
+```dart
+final FancyPasswordController _passwordController = FancyPasswordController();
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Center(
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 400,
+              child: FancyPasswordField(
+                passwordController: _passwordController,
+                validationRules: {
+                  DigitValidationRule(),
+                  UppercaseValidationRule(),
+                },
+                validator: (value) {
+                  return _passwordController.areAllRulesValidated
+                      ? null
+                      : 'Not Validated';
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+```
 
 # Customization
 The [FancyPasswordField] comes with some pre defined widget that show some okish good looking components for the rules
@@ -136,7 +194,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
---builder usage---
+![enter image description here](https://i.giphy.com/media/4GWBJPPGqbKVe7uCg4/giphy.mp4)
 
 ## Suggestions & Bugs
 
