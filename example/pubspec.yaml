@@ -32,6 +32,7 @@ dependencies:
   fancy_password_field:
     path:
       ../
+  step_progress_indicator: ^1.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
