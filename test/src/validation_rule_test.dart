@@ -137,8 +137,7 @@ void main() {
         'assert that min value is greater than 0',
         () {
           expect(() => MinCharactersValidationRule(0), throwsAssertionError);
-          expect(
-              () => MinCharactersValidationRule(-1), throwsAssertionError);
+          expect(() => MinCharactersValidationRule(-1), throwsAssertionError);
         },
       );
 
@@ -178,8 +177,7 @@ void main() {
         'assert that max value is greater than 0',
         () {
           expect(() => MaxCharactersValidationRule(0), throwsAssertionError);
-          expect(
-              () => MaxCharactersValidationRule(-1), throwsAssertionError);
+          expect(() => MaxCharactersValidationRule(-1), throwsAssertionError);
         },
       );
 
@@ -275,8 +273,6 @@ void main() {
           expect(rule.validate('123456789101112'), false);
           expect(rule.validate('1234567891011121'), false);
           expect(rule.validate('12345678910111213'), false);
-
-          
         },
       );
     },

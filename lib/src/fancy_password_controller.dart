@@ -2,7 +2,7 @@ import 'package:fancy_password_field/src/validation_rule.dart';
 import 'package:flutter/widgets.dart';
 
 /// This controller is responsible for controlling the state of the password
-/// field. This controller gives the widget access to some internal info of 
+/// field. This controller gives the widget access to some internal info of
 /// the password field, like what are the rules, and what rules are beeing
 /// ofended.
 class FancyPasswordController extends ChangeNotifier {
@@ -13,7 +13,7 @@ class FancyPasswordController extends ChangeNotifier {
   List<ValidationRule> get rules => _rules.toList();
 
   /// Returns the rules that are beeing ofended.
-  /// 
+  ///
   /// The controller tries to update these values after each onChanged
   List<ValidationRule> get ofendingRules => _ofendingRules.toList();
 
@@ -26,7 +26,7 @@ class FancyPasswordController extends ChangeNotifier {
   }
 
   /// Reacts to onChanged of the [FancyPasswordField]
-  /// 
+  ///
   /// Every call of onChange tries to update the ofending rules set.
   void onChange(String value) {
     _ofendingRules.clear();

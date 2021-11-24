@@ -31,13 +31,13 @@ class FancyPasswordField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
 
   /// Similarly of the [decoration] property of the [TextFormField].
-  /// 
+  ///
   /// If no [decoration] is null, a default [InputDecoration] will be created
   /// for the widget. This is done basically so we can put the show and hide icons.
   final InputDecoration? decoration;
 
   /// Set of [ValidationRule] rules.
-  /// 
+  ///
   /// This package comes with a bunch of pre defined commom rules. But feel free to
   /// create youw own [ValidationRule].
   final Set<ValidationRule> validationRules;
@@ -50,7 +50,7 @@ class FancyPasswordField extends StatefulWidget {
   final IconData? showPasswordIcon;
 
   /// The [IconData] that will be displayed to hide the password.
-  /// 
+  ///
   /// Only has effect if [hasShowHidePassword] is set true.
   final IconData? hidePasswordIcon;
 
@@ -58,18 +58,18 @@ class FancyPasswordField extends StatefulWidget {
   final bool hasStrengthIndicator;
 
   /// A builder to build a widget that will correspond to a strength indicator.
-  /// 
+  ///
   /// Only has effect if [hasStrengthIndicator] is set true.
   final StrengthIndicatorBuilder? strengthIndicatorBuilder;
 
   /// A builder to build a widget that will show the validation rules.
-  /// 
+  ///
   /// This is great for the user to keep track of which rules are ok and
   /// which are not.
   final ValidationRulesBuilder? validationRuleBuilder;
 
   /// Instance of [FancyPasswordController].
-  /// 
+  ///
   /// This is usefull when you want to retrieve some information out of the
   /// Widget.
   final FancyPasswordController? passwordController;
