@@ -1,5 +1,7 @@
 [![codecov](https://codecov.io/gh/rodrigobastosv/fancy_password_field/branch/main/graph/badge.svg?token=ts734vMC5z)](https://codecov.io/gh/rodrigobastosv/fancy_password_field)
 
+<a href="https://www.buymeacoffee.com/rodrigobastosv" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 #  Introduction
 
 FancyPasswordField is a widget that acts as a password validation field. You can have all the features of a commom password field, and also gets cool features like setting validation rules and password strength.
