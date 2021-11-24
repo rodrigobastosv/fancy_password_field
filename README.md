@@ -196,6 +196,10 @@ class MyApp extends StatelessWidget {
 
 ![enter image description here](https://i.giphy.com/media/4GWBJPPGqbKVe7uCg4/giphy.mp4)
 
+## Samples
+![Sample 1](assets/sample1.png)
+![Sample 2](assets/sample2.png)
+
 ## Suggestions & Bugs
 
 For any suggestions or bug report please head to [issue tracker][tracker].
