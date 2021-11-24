@@ -1,3 +1,7 @@
+# 1.0.0+4
+
+- Adjusting package description
+
 # 1.0.0+3
 
 - Uploaded samples and changed url
