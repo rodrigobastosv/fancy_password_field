@@ -17,6 +17,7 @@ class FancyPasswordField extends StatefulWidget {
     this.hidePasswordIcon,
     this.hasStrengthIndicator = true,
     this.strengthIndicatorBuilder,
+    this.hasValidationRules = true,
     this.validationRuleBuilder,
     this.passwordController,
   }) : super(key: key);
@@ -61,6 +62,9 @@ class FancyPasswordField extends StatefulWidget {
   ///
   /// Only has effect if [hasStrengthIndicator] is set true.
   final StrengthIndicatorBuilder? strengthIndicatorBuilder;
+
+  /// Wether the widget will show the [ValidationRulesWidget]
+  final bool hasValidationRules;
 
   /// A builder to build a widget that will show the validation rules.
   ///
@@ -137,7 +141,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
             password: _value,
             strengthIndicatorBuilder: widget.strengthIndicatorBuilder,
           ),
-        if (widget.validationRules.isNotEmpty)
+        if (widget.hasValidationRules && widget.validationRules.isNotEmpty)
           ValidationRulesWidget(
             password: _value,
             validationRules: widget.validationRules,
