@@ -1,3 +1,7 @@
+# 1.0.0+7
+
+- Adjusting package description and formatting files
+
 # 1.0.0+6
 
 - Adjusting README
