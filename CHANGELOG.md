@@ -1,3 +1,7 @@
+# 1.0.0+8
+
+- File formatting
+
 # 1.0.0+7
 
 - Adjusting package description and formatting files

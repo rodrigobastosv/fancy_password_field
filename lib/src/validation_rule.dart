@@ -103,7 +103,7 @@ class MinAndMaxCharactersValidationRule extends ValidationRule {
   MinAndMaxCharactersValidationRule({
     required int min,
     required int max,
-  })  : assert(min > 0, 'min must be greater than 0'),
+  })   : assert(min > 0, 'min must be greater than 0'),
         assert(max > 0, 'max must be greater than 0'),
         assert(max >= min, 'max must be greater than min'),
         _min = min,

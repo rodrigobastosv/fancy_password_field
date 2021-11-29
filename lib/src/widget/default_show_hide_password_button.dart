@@ -8,7 +8,7 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
     IconData? showPasswordIcon,
     IconData? hidePasswordIcon,
     required Function() onPressed,
-  })  : _hidePassword = hidePassword,
+  })   : _hidePassword = hidePassword,
         _showPasswordIcon = showPasswordIcon,
         _hidePasswordIcon = hidePasswordIcon,
         _onPressed = onPressed,
