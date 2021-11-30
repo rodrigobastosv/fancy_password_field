@@ -8,7 +8,7 @@ class DefaultValidationRulesWidget extends StatelessWidget {
     Key? key,
     required String value,
     required Set<ValidationRule> validationRules,
-  })   : _value = value,
+  })  : _value = value,
         _validationRules = validationRules,
         super(key: key);
 
