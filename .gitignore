@@ -30,6 +30,7 @@
 .pub/
 build/
 coverage/
+example/build/
 
 # Android related
 **/android/**/gradle-wrapper.jar

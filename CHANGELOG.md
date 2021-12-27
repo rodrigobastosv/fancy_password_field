@@ -1,3 +1,7 @@
+# 1.0.1
+
+- Proxing all TextFormFields properties
+
 # 1.0.0+9
 
 - Formatting
