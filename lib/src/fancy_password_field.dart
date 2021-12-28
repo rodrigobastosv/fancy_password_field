@@ -12,6 +12,7 @@ class FancyPasswordField extends StatefulWidget {
     this.onSaved,
     this.validator,
     this.decoration,
+    this.controller,
     this.validationRules = const {},
     this.hasShowHidePassword = true,
     this.showPasswordIcon,
@@ -65,6 +66,7 @@ class FancyPasswordField extends StatefulWidget {
     this.scrollController,
     this.restorationId,
     this.enableIMEPersonalizedLearning = true,
+    this.obscureText,
   }) : super(key: key);
 
   /// Similarly of the [onChanged] property of the [TextFormField].
@@ -81,6 +83,9 @@ class FancyPasswordField extends StatefulWidget {
   /// If no [decoration] is null, a default [InputDecoration] will be created
   /// for the widget. This is done basically so we can put the show and hide icons.
   final InputDecoration? decoration;
+
+  /// Property of [TextFormField]
+  final TextEditingController? controller;
 
   /// Set of [ValidationRule] rules.
   ///
@@ -255,6 +260,9 @@ class FancyPasswordField extends StatefulWidget {
   /// Property of [TextFormField]
   final bool enableIMEPersonalizedLearning;
 
+  /// Property of [TextFormField]
+  final bool? obscureText;
+
   @override
   State<FancyPasswordField> createState() => _FancyPasswordFieldState();
 }
@@ -262,12 +270,10 @@ class FancyPasswordField extends StatefulWidget {
 class _FancyPasswordFieldState extends State<FancyPasswordField> {
   String _value = '';
   bool _hidePassword = true;
-  late TextEditingController _valueController;
   late FancyPasswordController _passwordController;
 
   @override
   void initState() {
-    _valueController = TextEditingController();
     _passwordController = (widget.passwordController ??
         FancyPasswordController())
       ..setRules(widget.validationRules);
@@ -292,7 +298,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
                       )
                     : null,
               ),
-          obscureText: _hidePassword,
+          obscureText: widget.obscureText ?? _hidePassword,
           onChanged: (changedValue) {
             _value = changedValue;
             if (widget.onChanged != null) {
@@ -312,7 +318,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
             }
           },
           initialValue: widget.initialValue,
-          controller: _valueController,
+          controller: widget.controller,
           focusNode: widget.focusNode,
           keyboardType: widget.keyboardType,
           textCapitalization: widget.textCapitalization,

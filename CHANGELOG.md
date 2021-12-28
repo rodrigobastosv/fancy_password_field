@@ -1,3 +1,7 @@
+# 1.0.2
+
+- Adding obscure text and text controller properties
+
 # 1.0.1
 
 - Proxing all TextFormFields properties
