@@ -312,11 +312,9 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
               widget.onSaved!(value);
             }
           },
-          validator: (value) {
-            if (widget.validator != null) {
-              return widget.validator!(value);
-            }
-          },
+          validator: widget.validator != null
+              ? (value) => widget.validator!(value)
+              : null,
           initialValue: widget.initialValue,
           controller: widget.controller,
           focusNode: widget.focusNode,

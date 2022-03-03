@@ -85,6 +85,7 @@ void main() {
                 },
                 validator: (value) {
                   expect(value, 'test');
+                  return;
                 },
               ),
               ElevatedButton(

@@ -1,3 +1,7 @@
+# 1.0.2+1
+
+-  Small linting adjusts
+
 # 1.0.2
 
 - Adding obscure text and text controller properties
