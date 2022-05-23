@@ -1,3 +1,7 @@
+# 1.0.2+2
+
+-  Upgrading dependencies
+
 # 1.0.2+1
 
 -  Small linting adjusts

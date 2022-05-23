@@ -1,6 +1,6 @@
 name: fancy_password_field
 description: A highly customizable password control input widget. It has features such as password strenght and rules validation
-version: 1.0.2+1
+version: 1.0.2+2
 repository: https://github.com/rodrigobastosv/fancy_password_field
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   password_strength: ^0.2.0
-  font_awesome_flutter: ^9.2.0
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:
