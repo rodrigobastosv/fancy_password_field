@@ -1,3 +1,7 @@
+# 1.0.3
+
+-  Adding custom input decoration possibility
+
 # 1.0.2+2
 
 -  Upgrading dependencies

@@ -32,11 +32,48 @@ void main() {
   );
 
   testWidgets(
+    'should build without exploding with decoration',
+    (tester) async {
+      await loadWidget(
+        tester,
+        widget: FancyPasswordField(
+          key: UniqueKey(),
+          decoration: const InputDecoration(),
+        ),
+      );
+
+      expect(find.byType(FancyPasswordField), findsOneWidget);
+    },
+  );
+
+  testWidgets(
     'pressing DefaultShowHidePasswordButton should show password',
     (tester) async {
       await loadWidget(
         tester,
         widget: const FancyPasswordField(),
+      );
+
+      final showHideButton = find.byType(DefaultShowHidePasswordButton);
+      await tester.tap(showHideButton);
+      await tester.pumpAndSettle();
+
+      final passwordField = find.byType(TextFormField);
+      await tester.enterText(passwordField, 'test');
+      await tester.pumpAndSettle();
+
+      expect(find.text('test'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'pressing DefaultShowHidePasswordButton with decoration should show password',
+    (tester) async {
+      await loadWidget(
+        tester,
+        widget: const FancyPasswordField(
+          decoration: InputDecoration(),
+        ),
       );
 
       final showHideButton = find.byType(DefaultShowHidePasswordButton);

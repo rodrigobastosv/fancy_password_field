@@ -285,19 +285,32 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
     return Column(
       children: [
         TextFormField(
-          decoration: widget.decoration ??
-              InputDecoration(
-                suffixIcon: widget.hasShowHidePassword
-                    ? DefaultShowHidePasswordButton(
-                        hidePassword: _hidePassword,
-                        showPasswordIcon: widget.showPasswordIcon,
-                        hidePasswordIcon: widget.hidePasswordIcon,
-                        onPressed: () {
-                          setState(() => _hidePassword = !_hidePassword);
-                        },
-                      )
-                    : null,
-              ),
+          decoration: widget.decoration != null
+              ? widget.decoration!.copyWith(
+                  suffixIcon: widget.hasShowHidePassword
+                      ? widget.decoration?.suffixIcon ??
+                          DefaultShowHidePasswordButton(
+                            hidePassword: _hidePassword,
+                            showPasswordIcon: widget.showPasswordIcon,
+                            hidePasswordIcon: widget.hidePasswordIcon,
+                            onPressed: () {
+                              setState(() => _hidePassword = !_hidePassword);
+                            },
+                          )
+                      : null,
+                )
+              : InputDecoration(
+                  suffixIcon: widget.hasShowHidePassword
+                      ? DefaultShowHidePasswordButton(
+                          hidePassword: _hidePassword,
+                          showPasswordIcon: widget.showPasswordIcon,
+                          hidePasswordIcon: widget.hidePasswordIcon,
+                          onPressed: () {
+                            setState(() => _hidePassword = !_hidePassword);
+                          },
+                        )
+                      : null,
+                ),
           obscureText: widget.obscureText ?? _hidePassword,
           onChanged: (changedValue) {
             _value = changedValue;
