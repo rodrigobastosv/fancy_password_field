@@ -271,6 +271,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
   String _value = '';
   bool _hidePassword = true;
   late FancyPasswordController _passwordController;
+  InputDecoration? customDecoration;
 
   @override
   void initState() {
@@ -281,11 +282,29 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
+    if (widget.decoration != null) 
+    {
+      if (widget.decoration!.suffixIcon == null) {
+        customDecoration = widget.decoration!.copyWith(
+          suffixIcon: DefaultShowHidePasswordButton(
+                          hidePassword: _hidePassword,
+                          showPasswordIcon: widget.showPasswordIcon,
+                          hidePasswordIcon: widget.hidePasswordIcon,
+                          onPressed: () {
+                            setState(() => _hidePassword = !_hidePassword);
+                          },
+                        )
+        );
+      } else {
+        customDecoration = widget.decoration;
+      }
+    }
+
     return Column(
       children: [
         TextFormField(
-          decoration: widget.decoration ??
+          decoration: customDecoration ??
               InputDecoration(
                 suffixIcon: widget.hasShowHidePassword
                     ? DefaultShowHidePasswordButton(
