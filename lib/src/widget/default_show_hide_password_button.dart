@@ -21,15 +21,21 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _onPressed,
-      child: _hidePassword
-          ? FaIcon(
-              _hidePasswordIcon ?? FontAwesomeIcons.eye,
-            )
-          : Icon(
-              _showPasswordIcon ?? FontAwesomeIcons.eyeSlash,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: _onPressed,
+          child: _hidePassword
+              ? FaIcon(
+                  _hidePasswordIcon ?? FontAwesomeIcons.eye,
+                )
+              : Icon(
+                  _showPasswordIcon ?? FontAwesomeIcons.eyeSlash,
+                ),
+        ),
+      ],
     );
   }
 }
