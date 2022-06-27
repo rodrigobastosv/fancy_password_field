@@ -31,8 +31,11 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
               ? FaIcon(
                   _hidePasswordIcon ?? FontAwesomeIcons.eye,
                 )
-              : Icon(
-                  _showPasswordIcon ?? FontAwesomeIcons.eyeSlash,
+              : Padding(
+                  padding: const EdgeInsets.only(right: 6),
+                  child: Icon(
+                    _showPasswordIcon ?? FontAwesomeIcons.eyeSlash,
+                  ),
                 ),
         ),
       ],
