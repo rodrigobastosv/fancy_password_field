@@ -1,3 +1,7 @@
+# 1.0.4
+
+- Centering eye icon
+
 # 1.0.3
 
 -  Adding custom input decoration possibility
