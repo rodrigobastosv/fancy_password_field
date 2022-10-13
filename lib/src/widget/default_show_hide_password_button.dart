@@ -5,8 +5,8 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
   const DefaultShowHidePasswordButton({
     Key? key,
     required bool hidePassword,
-    IconData? showPasswordIcon,
-    IconData? hidePasswordIcon,
+    Icon? showPasswordIcon,
+    Icon? hidePasswordIcon,
     required Function() onPressed,
   })  : _hidePassword = hidePassword,
         _showPasswordIcon = showPasswordIcon,
@@ -15,8 +15,8 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
         super(key: key);
 
   final bool _hidePassword;
-  final IconData? _showPasswordIcon;
-  final IconData? _hidePasswordIcon;
+  final Icon? _showPasswordIcon;
+  final Icon? _hidePasswordIcon;
   final Function() _onPressed;
 
   @override
@@ -28,14 +28,16 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
         GestureDetector(
           onTap: _onPressed,
           child: _hidePassword
-              ? FaIcon(
-                  _hidePasswordIcon ?? FontAwesomeIcons.eye,
-                )
+              ? _hidePasswordIcon ??
+                  const FaIcon(
+                    FontAwesomeIcons.eye,
+                  )
               : Padding(
                   padding: const EdgeInsets.only(right: 6),
-                  child: Icon(
-                    _showPasswordIcon ?? FontAwesomeIcons.eyeSlash,
-                  ),
+                  child: _showPasswordIcon ??
+                      const Icon(
+                        FontAwesomeIcons.eyeSlash,
+                      ),
                 ),
         ),
       ],

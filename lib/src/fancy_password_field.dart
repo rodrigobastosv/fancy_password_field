@@ -96,14 +96,14 @@ class FancyPasswordField extends StatefulWidget {
   /// Indicates wether the widget will have Show/Hide password feature.
   final bool hasShowHidePassword;
 
-  /// The [IconData] that will be displayed to show the password
+  /// The [Icon] that will be displayed to show the password
   /// Only has effect if [hasShowHidePassword] is set true.
-  final IconData? showPasswordIcon;
+  final Icon? showPasswordIcon;
 
-  /// The [IconData] that will be displayed to hide the password.
+  /// The [Icon] that will be displayed to hide the password.
   ///
   /// Only has effect if [hasShowHidePassword] is set true.
-  final IconData? hidePasswordIcon;
+  final Icon? hidePasswordIcon;
 
   /// Wether the widget will show the [StrengthIndicatorWidget]
   final bool hasStrengthIndicator;

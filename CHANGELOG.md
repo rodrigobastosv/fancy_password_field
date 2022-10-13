@@ -1,3 +1,8 @@
+# 2.0.0
+
+- Adding Icon instead of IconData for the icons
+- Adding the possibility to pass custom text to the validation rules
+
 # 1.0.4
 
 - Centering eye icon
