@@ -17,6 +17,8 @@ class FancyPasswordField extends StatefulWidget {
     this.hasShowHidePassword = true,
     this.showPasswordIcon,
     this.hidePasswordIcon,
+    this.showPasswordWidget,
+    this.hidePasswordWidget,
     this.hasStrengthIndicator = true,
     this.strengthIndicatorBuilder,
     this.hasValidationRules = true,
@@ -67,7 +69,9 @@ class FancyPasswordField extends StatefulWidget {
     this.restorationId,
     this.enableIMEPersonalizedLearning = true,
     this.obscureText,
-  }) : super(key: key);
+  })  : assert(showPasswordIcon == null || showPasswordWidget == null, "showPasswordIcon and showPasswordWidget can't be used at the same time"),
+        assert(hidePasswordIcon == null || hidePasswordWidget == null, "hidePasswordIcon and hidePasswordWidget can't be used at the same time"),
+        super(key: key);
 
   /// Similarly of the [onChanged] property of the [TextFormField].
   final ValueChanged<String>? onChanged;
@@ -96,7 +100,8 @@ class FancyPasswordField extends StatefulWidget {
   /// Indicates wether the widget will have Show/Hide password feature.
   final bool hasShowHidePassword;
 
-  /// The [Icon] that will be displayed to show the password
+  /// The [Icon] that will be displayed to show the password. This field can only be used when the [showPasswordWidget] is null.
+  ///
   /// Only has effect if [hasShowHidePassword] is set true.
   final Icon? showPasswordIcon;
 
@@ -104,6 +109,16 @@ class FancyPasswordField extends StatefulWidget {
   ///
   /// Only has effect if [hasShowHidePassword] is set true.
   final Icon? hidePasswordIcon;
+
+  /// The [Widget] that will be displayed to show the password. This field can only be used when the [showPasswordIcon] field is null.
+  ///
+  /// Only has effect if [hasShowHidePassword] is set true.
+  final Widget? showPasswordWidget;
+
+  /// The [Widget] that will be displayed to hide the password. This field can only be used when the [hidePasswordIcon] field is null.
+  ///
+  /// Only has effect if [hasShowHidePassword] is set true.
+  final Widget? hidePasswordWidget;
 
   /// Wether the widget will show the [StrengthIndicatorWidget]
   final bool hasStrengthIndicator;
@@ -274,9 +289,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
 
   @override
   void initState() {
-    _passwordController = (widget.passwordController ??
-        FancyPasswordController())
-      ..setRules(widget.validationRules);
+    _passwordController = (widget.passwordController ?? FancyPasswordController())..setRules(widget.validationRules);
     super.initState();
   }
 
@@ -291,8 +304,8 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
                       ? widget.decoration?.suffixIcon ??
                           DefaultShowHidePasswordButton(
                             hidePassword: _hidePassword,
-                            showPasswordIcon: widget.showPasswordIcon,
-                            hidePasswordIcon: widget.hidePasswordIcon,
+                            showPasswordIcon: widget.showPasswordIcon ?? widget.showPasswordWidget,
+                            hidePasswordIcon: widget.hidePasswordIcon ?? widget.hidePasswordWidget,
                             onPressed: () {
                               setState(() => _hidePassword = !_hidePassword);
                             },
@@ -303,8 +316,8 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
                   suffixIcon: widget.hasShowHidePassword
                       ? DefaultShowHidePasswordButton(
                           hidePassword: _hidePassword,
-                          showPasswordIcon: widget.showPasswordIcon,
-                          hidePasswordIcon: widget.hidePasswordIcon,
+                          showPasswordIcon: widget.showPasswordIcon ?? widget.showPasswordWidget,
+                          hidePasswordIcon: widget.hidePasswordIcon ?? widget.hidePasswordWidget,
                           onPressed: () {
                             setState(() => _hidePassword = !_hidePassword);
                           },
@@ -325,9 +338,7 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
               widget.onSaved!(value);
             }
           },
-          validator: widget.validator != null
-              ? (value) => widget.validator!(value)
-              : null,
+          validator: widget.validator != null ? (value) => widget.validator!(value) : null,
           initialValue: widget.initialValue,
           controller: widget.controller,
           focusNode: widget.focusNode,

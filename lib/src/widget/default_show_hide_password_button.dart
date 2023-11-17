@@ -5,8 +5,8 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
   const DefaultShowHidePasswordButton({
     Key? key,
     required bool hidePassword,
-    Icon? showPasswordIcon,
-    Icon? hidePasswordIcon,
+    Widget? showPasswordIcon,
+    Widget? hidePasswordIcon,
     required Function() onPressed,
   })  : _hidePassword = hidePassword,
         _showPasswordIcon = showPasswordIcon,
@@ -15,8 +15,8 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
         super(key: key);
 
   final bool _hidePassword;
-  final Icon? _showPasswordIcon;
-  final Icon? _hidePasswordIcon;
+  final Widget? _showPasswordIcon;
+  final Widget? _hidePasswordIcon;
   final Function() _onPressed;
 
   @override
