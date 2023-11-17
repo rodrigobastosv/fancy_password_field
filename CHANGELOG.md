@@ -1,3 +1,11 @@
+# 2.0.2
+
+- Adding possibility to customize show and hide icons
+
+# 2.0.1
+
+- Updating dependencies
+  
 # 2.0.0
 
 - Adding Icon instead of IconData for the icons
