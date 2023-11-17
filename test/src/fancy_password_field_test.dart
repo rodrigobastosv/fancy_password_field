@@ -163,4 +163,72 @@ void main() {
       expect(find.byType(ValidationRulesWidget), findsOneWidget);
     },
   );
+
+  testWidgets(
+    'should render hidePasswordWidget when provided',
+    (tester) async {
+      await loadWidget(
+        tester,
+        widget: const FancyPasswordField(
+          hasShowHidePassword: true,
+          hidePasswordWidget: Icon(Icons.visibility_off),
+          // showPasswordWidget: Icon(Icons.visibility),
+        ),
+      );
+
+      expect((tester.widget(find.byType(Icon)) as Icon).icon, Icons.visibility_off);
+    },
+  );
+
+  testWidgets(
+    'should render showPasswordWidget when provided',
+    (tester) async {
+      await loadWidget(
+        tester,
+        widget: const FancyPasswordField(
+          hasShowHidePassword: true,
+          hidePasswordWidget: Icon(Icons.visibility_off),
+          showPasswordWidget: Icon(Icons.visibility),
+        ),
+      );
+
+      await tester.tap(find.byType(Icon));
+
+      await tester.pumpAndSettle();
+
+      expect((tester.widget(find.byType(Icon)) as Icon).icon, Icons.visibility);
+    },
+  );
+
+  testWidgets(
+    'should fail if hidePasswordIcon and hidePasswordWidget are both provided',
+    (tester) async {
+      expect(() async {
+        await loadWidget(
+          tester,
+          widget: FancyPasswordField(
+            hasShowHidePassword: true,
+            hidePasswordIcon: const Icon(Icons.visibility_off),
+            hidePasswordWidget: const Icon(Icons.visibility_off),
+          ),
+        );
+      }, throwsAssertionError);
+    },
+  );
+
+  testWidgets(
+    'should fail if showPasswordIcon and showPasswordWidget are both provided',
+    (tester) async {
+      expect(() async {
+        await loadWidget(
+          tester,
+          widget: FancyPasswordField(
+            hasShowHidePassword: true,
+            showPasswordIcon: const Icon(Icons.visibility_off),
+            showPasswordWidget: const Icon(Icons.visibility_off),
+          ),
+        );
+      }, throwsAssertionError);
+    },
+  );
 }
