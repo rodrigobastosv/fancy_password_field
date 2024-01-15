@@ -290,6 +290,8 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
   @override
   void initState() {
     _passwordController = (widget.passwordController ?? FancyPasswordController())..setRules(widget.validationRules);
+    // The order doesn't matter, because the TextEditingController will fail if initialValue and text are set.
+    _value = widget.initialValue ?? widget.controller?.text ?? '';
     super.initState();
   }
 

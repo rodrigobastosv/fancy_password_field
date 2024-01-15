@@ -231,4 +231,38 @@ void main() {
       }, throwsAssertionError);
     },
   );
+
+  testWidgets(
+    'should trigger immediate validation if initialValue is provided',
+    (tester) async {
+      await loadWidget(
+        tester,
+        widget: FancyPasswordField(
+          initialValue: 'Test',
+          validationRules: {
+            UppercaseValidationRule(),
+          },
+        ),
+      );
+
+      expect(((tester.widget(find.byType(Chip)) as Chip).label as Text).style?.color, Colors.green);
+    },
+  );
+
+  testWidgets(
+    'should trigger immediate validation if text editing controller with value is provided',
+    (tester) async {
+      await loadWidget(
+        tester,
+        widget: FancyPasswordField(
+          controller: TextEditingController(text: 'Test'),
+          validationRules: {
+            UppercaseValidationRule(),
+          },
+        ),
+      );
+
+      expect(((tester.widget(find.byType(Chip)) as Chip).label as Text).style?.color, Colors.green);
+    },
+  );
 }
