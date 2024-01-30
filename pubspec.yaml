@@ -4,7 +4,7 @@ version: 2.0.3
 repository: https://github.com/rodrigobastosv/fancy_password_field
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.12.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
