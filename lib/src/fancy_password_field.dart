@@ -36,7 +36,6 @@ class FancyPasswordField extends StatefulWidget {
     this.textAlignVertical,
     this.autofocus = false,
     this.readOnly = false,
-    this.toolbarOptions,
     this.showCursor,
     this.obscuringCharacter = '•',
     this.autocorrect = true,
@@ -178,9 +177,6 @@ class FancyPasswordField extends StatefulWidget {
 
   /// Property of [TextFormField]
   final bool readOnly;
-
-  /// Property of [TextFormField]
-  final ToolbarOptions? toolbarOptions;
 
   /// Property of [TextFormField]
   final bool? showCursor;
@@ -354,7 +350,6 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
           textAlignVertical: widget.textAlignVertical,
           autofocus: widget.autofocus,
           readOnly: widget.readOnly,
-          toolbarOptions: widget.toolbarOptions,
           showCursor: widget.showCursor,
           obscuringCharacter: widget.obscuringCharacter,
           autocorrect: widget.autocorrect,

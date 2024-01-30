@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
+      home: const Scaffold(
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             /// Change this to one of the available samples on the samples folder
             Sample1(),
           ],

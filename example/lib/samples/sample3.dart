@@ -18,12 +18,12 @@ class Sample3 extends StatelessWidget {
             hintText: 'Password',
           ),
           strengthIndicatorBuilder: (strength) {
-            return Column(
+            return const Column(
               children: [
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text(
                       'Password Strength',
                       style: TextStyle(
@@ -41,8 +41,8 @@ class Sample3 extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const LinearProgressIndicator(
+                SizedBox(height: 8),
+                LinearProgressIndicator(
                   value: 0.5,
                   color: Colors.white,
                   backgroundColor: Colors.white,
@@ -50,11 +50,11 @@ class Sample3 extends StatelessWidget {
                     Color(0xFFF6A61E),
                   ),
                 ),
-                const SizedBox(height: 8),
-                const Text(
+                SizedBox(height: 8),
+                Text(
                   'Your password is easily guessable. You can do better.',
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
               ],
             );
           },
