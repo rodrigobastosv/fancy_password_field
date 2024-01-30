@@ -1,3 +1,7 @@
+# 2.0.3
+
+- Fixes initial validation of the FormField
+  
 # 2.0.2
 
 - Adding possibility to customize show and hide icons
