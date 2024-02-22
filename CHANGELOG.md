@@ -1,7 +1,7 @@
-# 2.1.4
+# 2.0.4
 
 - Add parameter to show or not the incorrect rule
-  
+
 # 2.0.3
 
 - Fixes initial validation of the FormField
