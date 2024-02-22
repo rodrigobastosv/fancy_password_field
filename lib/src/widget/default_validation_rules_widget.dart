@@ -23,10 +23,9 @@ class DefaultValidationRulesWidget extends StatelessWidget {
         const SizedBox(height: 6),
         Wrap(
           children: _validationRules
+              .where((rule) => rule.showName)
               .map(
-                (rule) => rule.validate(_value) && _value.isNotEmpty
-                    ? DefaultRulePassedWidget(rule.name)
-                    : DefaultRuleNotPassedWidget(rule.name),
+                (rule) => rule.validate(_value) && _value.isNotEmpty ? DefaultRulePassedWidget(rule.name) : DefaultRuleNotPassedWidget(rule.name),
               )
               .toList(),
         ),
