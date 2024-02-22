@@ -68,8 +68,10 @@ class FancyPasswordField extends StatefulWidget {
     this.restorationId,
     this.enableIMEPersonalizedLearning = true,
     this.obscureText,
-  })  : assert(showPasswordIcon == null || showPasswordWidget == null, "showPasswordIcon and showPasswordWidget can't be used at the same time"),
-        assert(hidePasswordIcon == null || hidePasswordWidget == null, "hidePasswordIcon and hidePasswordWidget can't be used at the same time"),
+  })  : assert(showPasswordIcon == null || showPasswordWidget == null,
+            "showPasswordIcon and showPasswordWidget can't be used at the same time"),
+        assert(hidePasswordIcon == null || hidePasswordWidget == null,
+            "hidePasswordIcon and hidePasswordWidget can't be used at the same time"),
         super(key: key);
 
   /// Similarly of the [onChanged] property of the [TextFormField].
@@ -285,7 +287,9 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
 
   @override
   void initState() {
-    _passwordController = (widget.passwordController ?? FancyPasswordController())..setRules(widget.validationRules);
+    _passwordController = (widget.passwordController ??
+        FancyPasswordController())
+      ..setRules(widget.validationRules);
     // The order doesn't matter, because the TextEditingController will fail if initialValue and text are set.
     _value = widget.initialValue ?? widget.controller?.text ?? '';
     super.initState();
@@ -302,8 +306,10 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
                       ? widget.decoration?.suffixIcon ??
                           DefaultShowHidePasswordButton(
                             hidePassword: _hidePassword,
-                            showPasswordIcon: widget.showPasswordIcon ?? widget.showPasswordWidget,
-                            hidePasswordIcon: widget.hidePasswordIcon ?? widget.hidePasswordWidget,
+                            showPasswordIcon: widget.showPasswordIcon ??
+                                widget.showPasswordWidget,
+                            hidePasswordIcon: widget.hidePasswordIcon ??
+                                widget.hidePasswordWidget,
                             onPressed: () {
                               setState(() => _hidePassword = !_hidePassword);
                             },
@@ -314,8 +320,10 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
                   suffixIcon: widget.hasShowHidePassword
                       ? DefaultShowHidePasswordButton(
                           hidePassword: _hidePassword,
-                          showPasswordIcon: widget.showPasswordIcon ?? widget.showPasswordWidget,
-                          hidePasswordIcon: widget.hidePasswordIcon ?? widget.hidePasswordWidget,
+                          showPasswordIcon: widget.showPasswordIcon ??
+                              widget.showPasswordWidget,
+                          hidePasswordIcon: widget.hidePasswordIcon ??
+                              widget.hidePasswordWidget,
                           onPressed: () {
                             setState(() => _hidePassword = !_hidePassword);
                           },
@@ -336,7 +344,9 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
               widget.onSaved!(value);
             }
           },
-          validator: widget.validator != null ? (value) => widget.validator!(value) : null,
+          validator: widget.validator != null
+              ? (value) => widget.validator!(value)
+              : null,
           initialValue: widget.initialValue,
           controller: widget.controller,
           focusNode: widget.focusNode,
