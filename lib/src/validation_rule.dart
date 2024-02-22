@@ -7,7 +7,7 @@ abstract class ValidationRule {
   String get name;
 
   /// Determines if the name of the rule will be displayed.
-  bool get showName;
+  bool get showName => true;
 
   /// A function that should be implemented and it represents
   /// the validation of the value. It should return [Boolean] indicating
