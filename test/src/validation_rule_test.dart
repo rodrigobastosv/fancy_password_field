@@ -279,13 +279,13 @@ void main() {
   );
 
   group(
-    'CustomValidationRule',
+    'RegexValidationRule',
     () {
-      late CustomValidationRule rule;
+      late RegexValidationRule rule;
       const name = 'Custom name';
       const regex = r'^[^@]+$';
 
-      setUp(() => rule = CustomValidationRule(
+      setUp(() => rule = RegexValidationRule(
             name: name,
             regex: regex,
           ));
@@ -315,7 +315,7 @@ void main() {
       test(
         'showName custom value',
         () {
-          final customRule = CustomValidationRule(
+          final customRule = RegexValidationRule(
             name: name,
             regex: regex,
             showName: false,

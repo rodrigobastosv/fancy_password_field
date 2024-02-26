@@ -1,3 +1,7 @@
+# 2.0.5
+
+- Add RegexValidation rule to enable the use of Regex on the rules
+
 # 2.0.4
 
 - Add parameter to show or not the incorrect rule

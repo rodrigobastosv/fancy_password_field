@@ -176,7 +176,8 @@ void main() {
         ),
       );
 
-      expect((tester.widget(find.byType(Icon)) as Icon).icon, Icons.visibility_off);
+      expect((tester.widget(find.byType(Icon)) as Icon).icon,
+          Icons.visibility_off);
     },
   );
 
@@ -245,7 +246,11 @@ void main() {
         ),
       );
 
-      expect(((tester.widget(find.byType(Chip)) as Chip).label as Text).style?.color, Colors.green);
+      expect(
+          ((tester.widget(find.byType(Chip)) as Chip).label as Text)
+              .style
+              ?.color,
+          Colors.green);
     },
   );
 
@@ -262,7 +267,11 @@ void main() {
         ),
       );
 
-      expect(((tester.widget(find.byType(Chip)) as Chip).label as Text).style?.color, Colors.green);
+      expect(
+          ((tester.widget(find.byType(Chip)) as Chip).label as Text)
+              .style
+              ?.color,
+          Colors.green);
     },
   );
 }

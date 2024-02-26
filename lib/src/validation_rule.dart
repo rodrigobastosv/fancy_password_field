@@ -15,96 +15,73 @@ abstract class ValidationRule {
   bool validate(String value);
 }
 
-/// Validates that the value has at least one uppercase letter
-class UppercaseValidationRule extends ValidationRule {
-  final String? _customText;
+class RegexValidationRule extends ValidationRule {
+  RegexValidationRule({
+    required String regex,
+    required String name,
+    bool? showName,
+  })  : _regex = regex,
+        _name = name,
+        _showName = showName;
+
+  final String _regex;
+  final String _name;
   final bool? _showName;
 
+  @override
+  String get name => _name;
+
+  @override
+  bool get showName => _showName ?? true;
+
+  @override
+  bool validate(String value) {
+    return value.contains(RegExp(_regex));
+  }
+}
+
+/// Validates that the value has at least one uppercase letter
+class UppercaseValidationRule extends RegexValidationRule {
   UppercaseValidationRule({
     String? customText,
     bool? showName,
-  })  : _customText = customText,
-        _showName = showName;
-
-  @override
-  String get name => _customText ?? 'Has uppercase letter';
-
-  @override
-  bool get showName => _showName ?? true;
-
-  @override
-  bool validate(String value) {
-    return value.contains(RegExp(r'[A-Z]'));
-  }
+  }) : super(
+            name: customText ?? 'Has uppercase letter',
+            showName: showName ?? true,
+            regex: r'[A-Z]');
 }
 
 /// Validates that the value has at least one lowercase letter
-class LowercaseValidationRule extends ValidationRule {
-  final String? _customText;
-  final bool? _showName;
-
+class LowercaseValidationRule extends RegexValidationRule {
   LowercaseValidationRule({
     String? customText,
     bool? showName,
-  })  : _customText = customText,
-        _showName = showName;
-
-  @override
-  String get name => _customText ?? 'Has lowercase letter';
-
-  @override
-  bool get showName => _showName ?? true;
-
-  @override
-  bool validate(String value) {
-    return value.contains(RegExp(r'[a-z]'));
-  }
+  }) : super(
+            name: customText ?? 'Has lowercase letter',
+            showName: showName ?? true,
+            regex: r'[a-z]');
 }
 
 /// Validates that the value has at least one digit
-class DigitValidationRule extends ValidationRule {
-  final String? _customText;
-  final bool? _showName;
-
+class DigitValidationRule extends RegexValidationRule {
   DigitValidationRule({
     String? customText,
     bool? showName,
-  })  : _customText = customText,
-        _showName = showName;
-
-  @override
-  String get name => _customText ?? 'Has digit';
-
-  @override
-  bool get showName => _showName ?? true;
-
-  @override
-  bool validate(String value) {
-    return value.contains(RegExp(r'[0-9]'));
-  }
+  }) : super(
+            name: customText ?? 'Has digit',
+            showName: showName ?? true,
+            regex: r'[0-9]');
 }
 
 /// Validates that the value has at least one special character
-class SpecialCharacterValidationRule extends ValidationRule {
-  final String? _customText;
-  final bool? _showName;
-
+class SpecialCharacterValidationRule extends RegexValidationRule {
   SpecialCharacterValidationRule({
     String? customText,
     bool? showName,
-  })  : _customText = customText,
-        _showName = showName;
-
-  @override
-  String get name => _customText ?? 'Has special character';
-
-  @override
-  bool get showName => _showName ?? true;
-
-  @override
-  bool validate(String value) {
-    return value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-  }
+  }) : super(
+            name: customText ?? 'Has special character',
+            showName: showName ?? true,
+            regex: r'[!@#$%^&*(),.?":{}|<>]');
 }
 
 /// Validates that the value has at least [numberOfCharacters]
@@ -207,30 +184,5 @@ class MinAndMaxCharactersValidationRule extends ValidationRule {
   bool validate(String value) {
     return (value.length >= _min && value.length < _max) ||
         (value.length > _min && value.length <= _max);
-  }
-}
-
-class CustomValidationRule extends ValidationRule {
-  CustomValidationRule({
-    required String regex,
-    required String name,
-    bool? showName,
-  })  : _regex = regex,
-        _name = name,
-        _showName = showName;
-
-  final String _regex;
-  final String _name;
-  final bool? _showName;
-
-  @override
-  String get name => _name;
-
-  @override
-  bool get showName => _showName ?? true;
-
-  @override
-  bool validate(String value) {
-    return value.contains(RegExp(_regex));
   }
 }
