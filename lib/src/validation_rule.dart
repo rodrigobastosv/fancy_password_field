@@ -209,3 +209,28 @@ class MinAndMaxCharactersValidationRule extends ValidationRule {
         (value.length > _min && value.length <= _max);
   }
 }
+
+class CustomValidationRule extends ValidationRule {
+  CustomValidationRule({
+    required String regex,
+    required String name,
+    bool? showName,
+  })  : _regex = regex,
+        _name = name,
+        _showName = showName;
+
+  final String _regex;
+  final String _name;
+  final bool? _showName;
+
+  @override
+  String get name => _name;
+
+  @override
+  bool get showName => _showName ?? true;
+
+  @override
+  bool validate(String value) {
+    return value.contains(RegExp(_regex));
+  }
+}

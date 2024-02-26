@@ -277,4 +277,52 @@ void main() {
       );
     },
   );
+
+  group(
+    'CustomValidationRule',
+    () {
+      late CustomValidationRule rule;
+      const name = 'Custom name';
+      const regex = r'^[^@]+$';
+
+      setUp(() => rule = CustomValidationRule(
+            name: name,
+            regex: regex,
+          ));
+
+      test(
+        'name',
+        () {
+          expect(rule.name, name);
+        },
+      );
+
+      test(
+        'validate',
+        () {
+          expect(rule.validate('aaaa'), isTrue);
+          expect(rule.validate('aaa@'), isFalse);
+        },
+      );
+
+      test(
+        'showName default value',
+        () {
+          expect(rule.showName, true);
+        },
+      );
+
+      test(
+        'showName custom value',
+        () {
+          final customRule = CustomValidationRule(
+            name: name,
+            regex: regex,
+            showName: false,
+          );
+          expect(customRule.showName, isFalse);
+        },
+      );
+    },
+  );
 }
