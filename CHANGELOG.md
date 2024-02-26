@@ -1,3 +1,7 @@
+# 2.0.6
+
+- Removes font_awesome_flutter dependency
+
 # 2.0.5
 
 - Add RegexValidation rule to enable the use of Regex on the rules

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DefaultShowHidePasswordButton extends StatelessWidget {
   const DefaultShowHidePasswordButton({
@@ -29,14 +28,14 @@ class DefaultShowHidePasswordButton extends StatelessWidget {
           onTap: _onPressed,
           child: _hidePassword
               ? _hidePasswordIcon ??
-                  const FaIcon(
-                    FontAwesomeIcons.eye,
+                  const Icon(
+                    Icons.visibility,
                   )
               : Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: _showPasswordIcon ??
                       const Icon(
-                        FontAwesomeIcons.eyeSlash,
+                        Icons.visibility_off,
                       ),
                 ),
         ),
