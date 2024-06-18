@@ -1,3 +1,7 @@
+# 2.0.7
+
+- Adds semantics capabilities
+
 # 2.0.6
 
 - Removes font_awesome_flutter dependency
