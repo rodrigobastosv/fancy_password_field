@@ -1,3 +1,7 @@
+# 2.0.8
+
+- Formatting files
+
 # 2.0.7
 
 - Adds semantics capabilities

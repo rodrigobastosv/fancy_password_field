@@ -327,7 +327,8 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
                                 hidePasswordIcon: widget.hidePasswordIcon ??
                                     widget.hidePasswordWidget,
                                 onPressed: () {
-                                  setState(() => _hidePassword = !_hidePassword);
+                                  setState(
+                                      () => _hidePassword = !_hidePassword);
                                 },
                               )
                           : null,
@@ -406,7 +407,8 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
               autovalidateMode: widget.autovalidateMode,
               scrollController: widget.scrollController,
               restorationId: widget.restorationId,
-              enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+              enableIMEPersonalizedLearning:
+                  widget.enableIMEPersonalizedLearning,
             ),
             if (widget.hasStrengthIndicator && _value.isNotEmpty)
               StrengthIndicatorWidget(
