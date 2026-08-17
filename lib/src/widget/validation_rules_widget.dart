@@ -1,23 +1,18 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../validation_rule.dart';
 import 'widget.dart';
 
-typedef ValidationRulesBuilder = Widget Function(
-  Set<ValidationRule> rules,
-  String value,
-);
+typedef ValidationRulesBuilder =
+    Widget Function(Set<ValidationRule> rules, String value);
 
 class ValidationRulesWidget extends StatelessWidget {
   const ValidationRulesWidget({
-    Key? key,
-    required String password,
-    required Set<ValidationRule> validationRules,
-    ValidationRulesBuilder? validationRuleBuilder,
-  })  : _password = password,
-        _validationRules = validationRules,
-        _validationRuleBuilder = validationRuleBuilder,
-        super(key: key);
+    super.key,
+    required this._password,
+    required this._validationRules,
+    this._validationRuleBuilder,
+  });
 
   final String _password;
   final Set<ValidationRule> _validationRules;
@@ -26,10 +21,7 @@ class ValidationRulesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _validationRuleBuilder != null
-        ? _validationRuleBuilder!(
-            _validationRules,
-            _password,
-          )
+        ? _validationRuleBuilder(_validationRules, _password)
         : DefaultValidationRulesWidget(
             value: _password,
             validationRules: _validationRules,

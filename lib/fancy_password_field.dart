@@ -1,4 +1,4 @@
-library fancy_password_field;
+library;
 
 export 'src/fancy_password_controller.dart';
 export 'src/fancy_password_field.dart';

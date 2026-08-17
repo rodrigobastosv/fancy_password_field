@@ -1,16 +1,14 @@
 import 'package:fancy_password_field/src/validation_rule.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 typedef RuleBuilder = Widget Function(String ruleName);
 
 class DefaultValidationRulesWidget extends StatelessWidget {
   const DefaultValidationRulesWidget({
-    Key? key,
-    required String value,
-    required Set<ValidationRule> validationRules,
-  })  : _value = value,
-        _validationRules = validationRules,
-        super(key: key);
+    super.key,
+    required this._value,
+    required this._validationRules,
+  });
 
   final String _value;
   final Set<ValidationRule> _validationRules;
@@ -38,22 +36,14 @@ class DefaultValidationRulesWidget extends StatelessWidget {
 
 @visibleForTesting
 class DefaultRulePassedWidget extends StatelessWidget {
-  const DefaultRulePassedWidget(
-    this.name, {
-    Key? key,
-  }) : super(key: key);
+  const DefaultRulePassedWidget(this.name, {super.key});
 
   final String name;
 
   @override
   Widget build(BuildContext context) {
     return Chip(
-      label: Text(
-        name,
-        style: const TextStyle(
-          color: Colors.green,
-        ),
-      ),
+      label: Text(name, style: const TextStyle(color: Colors.green)),
       backgroundColor: Colors.white,
     );
   }
@@ -61,22 +51,14 @@ class DefaultRulePassedWidget extends StatelessWidget {
 
 @visibleForTesting
 class DefaultRuleNotPassedWidget extends StatelessWidget {
-  const DefaultRuleNotPassedWidget(
-    this.name, {
-    Key? key,
-  }) : super(key: key);
+  const DefaultRuleNotPassedWidget(this.name, {super.key});
 
   final String name;
 
   @override
   Widget build(BuildContext context) {
     return Chip(
-      label: Text(
-        name,
-        style: const TextStyle(
-          color: Colors.red,
-        ),
-      ),
+      label: Text(name, style: const TextStyle(color: Colors.red)),
       backgroundColor: Colors.white,
     );
   }

@@ -17,12 +17,10 @@ abstract class ValidationRule {
 
 class RegexValidationRule extends ValidationRule {
   RegexValidationRule({
-    required String regex,
-    required String name,
-    bool? showName,
-  })  : _regex = regex,
-        _name = name,
-        _showName = showName;
+    required this._regex,
+    required this._name,
+    this._showName,
+  });
 
   final String _regex;
   final String _name;
@@ -42,46 +40,42 @@ class RegexValidationRule extends ValidationRule {
 
 /// Validates that the value has at least one uppercase letter
 class UppercaseValidationRule extends RegexValidationRule {
-  UppercaseValidationRule({
-    String? customText,
-    bool? showName,
-  }) : super(
-            name: customText ?? 'Has uppercase letter',
-            showName: showName ?? true,
-            regex: r'[A-Z]');
+  UppercaseValidationRule({String? customText, bool? showName})
+    : super(
+        name: customText ?? 'Has uppercase letter',
+        showName: showName ?? true,
+        regex: r'[A-Z]',
+      );
 }
 
 /// Validates that the value has at least one lowercase letter
 class LowercaseValidationRule extends RegexValidationRule {
-  LowercaseValidationRule({
-    String? customText,
-    bool? showName,
-  }) : super(
-            name: customText ?? 'Has lowercase letter',
-            showName: showName ?? true,
-            regex: r'[a-z]');
+  LowercaseValidationRule({String? customText, bool? showName})
+    : super(
+        name: customText ?? 'Has lowercase letter',
+        showName: showName ?? true,
+        regex: r'[a-z]',
+      );
 }
 
 /// Validates that the value has at least one digit
 class DigitValidationRule extends RegexValidationRule {
-  DigitValidationRule({
-    String? customText,
-    bool? showName,
-  }) : super(
-            name: customText ?? 'Has digit',
-            showName: showName ?? true,
-            regex: r'[0-9]');
+  DigitValidationRule({String? customText, bool? showName})
+    : super(
+        name: customText ?? 'Has digit',
+        showName: showName ?? true,
+        regex: r'[0-9]',
+      );
 }
 
 /// Validates that the value has at least one special character
 class SpecialCharacterValidationRule extends RegexValidationRule {
-  SpecialCharacterValidationRule({
-    String? customText,
-    bool? showName,
-  }) : super(
-            name: customText ?? 'Has special character',
-            showName: showName ?? true,
-            regex: r'[!@#$%^&*(),.?":{}|<>]');
+  SpecialCharacterValidationRule({String? customText, bool? showName})
+    : super(
+        name: customText ?? 'Has special character',
+        showName: showName ?? true,
+        regex: r'[!@#$%^&*(),.?":{}|<>]',
+      );
 }
 
 /// Validates that the value has at least [numberOfCharacters]
@@ -94,12 +88,12 @@ class MinCharactersValidationRule extends ValidationRule {
 
   MinCharactersValidationRule(
     this._numberOfCharacters, {
-    String? customText,
-    bool? showName,
-  })  : assert(_numberOfCharacters > 0,
-            'numberOfCharacters must be greater than 0'),
-        _customText = customText,
-        _showName = showName;
+    this._customText,
+    this._showName,
+  }) : assert(
+         _numberOfCharacters > 0,
+         'numberOfCharacters must be greater than 0',
+       );
 
   @override
   String get name =>
@@ -125,12 +119,12 @@ class MaxCharactersValidationRule extends ValidationRule {
 
   MaxCharactersValidationRule(
     this._numberOfCharacters, {
-    String? customText,
-    bool? showName,
-  })  : assert(_numberOfCharacters > 0,
-            'numberOfCharacters must be greater than 0'),
-        _customText = customText,
-        _showName = showName;
+    this._customText,
+    this._showName,
+  }) : assert(
+         _numberOfCharacters > 0,
+         'numberOfCharacters must be greater than 0',
+       );
 
   @override
   String get name =>
@@ -158,17 +152,13 @@ class MinAndMaxCharactersValidationRule extends ValidationRule {
   final bool? _showName;
 
   MinAndMaxCharactersValidationRule({
-    required int min,
-    required int max,
-    String? customText,
-    bool? showName,
-  })  : assert(min > 0, 'min must be greater than 0'),
-        assert(max > 0, 'max must be greater than 0'),
-        assert(max >= min, 'max must be greater than min'),
-        _min = min,
-        _max = max,
-        _customText = customText,
-        _showName = showName;
+    required this._min,
+    required this._max,
+    this._customText,
+    this._showName,
+  }) : assert(_min > 0, 'min must be greater than 0'),
+       assert(_max > 0, 'max must be greater than 0'),
+       assert(_max >= _min, 'max must be greater than min');
 
   @override
   String get name =>

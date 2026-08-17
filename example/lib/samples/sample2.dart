@@ -1,11 +1,9 @@
 import 'package:fancy_password_field/fancy_password_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class Sample2 extends StatelessWidget {
-  const Sample2({
-    Key? key,
-  }) : super(key: key);
+  const Sample2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,27 +37,25 @@ class Sample2 extends StatelessWidget {
           validationRuleBuilder: (rules, value) {
             return ListView(
               shrinkWrap: true,
-              children: rules.map(
-                (rule) {
-                  final ruleValidated = rule.validate(value);
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        ruleValidated ? Icons.check : Icons.close,
+              children: rules.map((rule) {
+                final ruleValidated = rule.validate(value);
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      ruleValidated ? Icons.check : Icons.close,
+                      color: ruleValidated ? Colors.green : Colors.red,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      rule.name,
+                      style: TextStyle(
                         color: ruleValidated ? Colors.green : Colors.red,
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        rule.name,
-                        style: TextStyle(
-                          color: ruleValidated ? Colors.green : Colors.red,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ).toList(),
+                    ),
+                  ],
+                );
+              }).toList(),
             );
           },
         ),

@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class DefaultStrengthIndicator extends StatelessWidget {
-  const DefaultStrengthIndicator(
-    this._strength, {
-    Key? key,
-  }) : super(key: key);
+  const DefaultStrengthIndicator(this._strength, {super.key});
 
   final double _strength;
 

@@ -1,11 +1,9 @@
 import 'package:fancy_password_field/fancy_password_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class SampleInitialValue extends StatelessWidget {
-  const SampleInitialValue({
-    Key? key,
-  }) : super(key: key);
+  const SampleInitialValue({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,36 +40,31 @@ class SampleInitialValue extends StatelessWidget {
             return Wrap(
               runSpacing: 8,
               spacing: 4,
-              children: rules.map(
-                (rule) {
-                  final ruleValidated = rule.validate(value);
-                  return Chip(
-                    label: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (ruleValidated) ...[
-                          const Icon(
-                            Icons.check,
-                            color: Color(0xFF0A9471),
-                          ),
-                          const SizedBox(width: 8),
-                        ],
-                        Text(
-                          rule.name,
-                          style: TextStyle(
-                            color: ruleValidated
-                                ? const Color(0xFF0A9471)
-                                : const Color(0xFF9A9FAF),
-                          ),
-                        ),
+              children: rules.map((rule) {
+                final ruleValidated = rule.validate(value);
+                return Chip(
+                  label: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (ruleValidated) ...[
+                        const Icon(Icons.check, color: Color(0xFF0A9471)),
+                        const SizedBox(width: 8),
                       ],
-                    ),
-                    backgroundColor: ruleValidated
-                        ? const Color(0xFFD0F7ED)
-                        : const Color(0xFFF4F5F6),
-                  );
-                },
-              ).toList(),
+                      Text(
+                        rule.name,
+                        style: TextStyle(
+                          color: ruleValidated
+                              ? const Color(0xFF0A9471)
+                              : const Color(0xFF9A9FAF),
+                        ),
+                      ),
+                    ],
+                  ),
+                  backgroundColor: ruleValidated
+                      ? const Color(0xFFD0F7ED)
+                      : const Color(0xFFF4F5F6),
+                );
+              }).toList(),
             );
           },
         ),
