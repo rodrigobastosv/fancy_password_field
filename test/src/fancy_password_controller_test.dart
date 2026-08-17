@@ -9,60 +9,40 @@ void main() {
     passwordController = FancyPasswordController();
   });
 
-  test(
-    'starts with empty ofending rules and areAllRulesValidated true',
-    () {
-      expect(passwordController.ofendingRules, isEmpty);
-      expect(passwordController.areAllRulesValidated, true);
-    },
-  );
+  test('starts with empty ofending rules and areAllRulesValidated true', () {
+    expect(passwordController.ofendingRules, isEmpty);
+    expect(passwordController.areAllRulesValidated, true);
+  });
 
-  test(
-    'setRules should set the given rules',
-    () {
+  test('setRules should set the given rules', () {
+    passwordController.setRules({UppercaseValidationRule()});
+    expect(passwordController.rules.first, isA<UppercaseValidationRule>());
+  });
+
+  group('onChange', () {
+    test('onChange should validate rules and result to no ofending rules', () {
       passwordController.setRules({
         UppercaseValidationRule(),
+        LowercaseValidationRule(),
       });
-      expect(passwordController.rules.first, isA<UppercaseValidationRule>());
-    },
-  );
 
-  group(
-    'onChange',
-    () {
-      test(
-        'onChange should validate rules and result to no ofending rules',
-        () {
-          passwordController.setRules({
-            UppercaseValidationRule(),
-            LowercaseValidationRule(),
-          });
+      passwordController.onChange('Aa');
 
-          passwordController.onChange('Aa');
+      expect(passwordController.ofendingRules, isEmpty);
+    });
 
-          expect(
-            passwordController.ofendingRules,
-            isEmpty,
-          );
-        },
+    test('onChange should validate rules and result to a ofending rule', () {
+      passwordController.setRules({
+        UppercaseValidationRule(),
+        LowercaseValidationRule(),
+      });
+
+      passwordController.onChange('A');
+
+      expect(
+        passwordController.ofendingRules.first,
+        isA<LowercaseValidationRule>(),
       );
-
-      test(
-        'onChange should validate rules and result to a ofending rule',
-        () {
-          passwordController.setRules({
-            UppercaseValidationRule(),
-            LowercaseValidationRule(),
-          });
-
-          passwordController.onChange('A');
-
-          expect(
-            passwordController.ofendingRules.first,
-            isA<LowercaseValidationRule>(),
-          );
-        },
-      );
-    },
-  );
+    });
+  });
 }

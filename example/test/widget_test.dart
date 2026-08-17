@@ -1,30 +1,32 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:example/main.dart';
+import 'package:example/samples/samples.dart';
+import 'package:fancy_password_field/fancy_password_field.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('MyApp builds a FancyPasswordField', (tester) async {
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.byType(FancyPasswordField), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  const samples = <String, Widget>{
+    'Sample1': Sample1(),
+    'Sample2': Sample2(),
+    'Sample3': Sample3(),
+    'Sample4': Sample4(),
+    'SampleInitialValue': SampleInitialValue(),
+  };
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  samples.forEach((name, sample) {
+    testWidgets('$name accepts input', (tester) async {
+      await tester.pumpWidget(MaterialApp(home: Scaffold(body: sample)));
+
+      await tester.enterText(find.byType(TextFormField), 'Passw0rd!');
+      await tester.pumpAndSettle();
+
+      expect(find.byType(FancyPasswordField), findsOneWidget);
+    });
   });
 }

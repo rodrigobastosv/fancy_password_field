@@ -1,6 +1,6 @@
 import 'package:fancy_password_field/src/validation_rule.dart';
 import 'package:fancy_password_field/src/widget/widget.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -21,33 +21,19 @@ void main() {
     );
   }
 
-  testWidgets(
-    'should build without exploding',
-    (tester) async {
-      await loadWidget(
-        tester,
-        value: 'test',
-        rules: {},
-      );
+  testWidgets('should build without exploding', (tester) async {
+    await loadWidget(tester, value: 'test', rules: {});
 
-      expect(find.byType(DefaultValidationRulesWidget), findsOneWidget);
-    },
-  );
+    expect(find.byType(DefaultValidationRulesWidget), findsOneWidget);
+  });
 
-  testWidgets(
-    'should show DefaultRulePassedWidget when rule passes',
-    (tester) async {
-      await loadWidget(
-        tester,
-        value: 'Test',
-        rules: {
-          UppercaseValidationRule(),
-        },
-      );
+  testWidgets('should show DefaultRulePassedWidget when rule passes', (
+    tester,
+  ) async {
+    await loadWidget(tester, value: 'Test', rules: {UppercaseValidationRule()});
 
-      expect(find.byType(DefaultRulePassedWidget), findsOneWidget);
-    },
-  );
+    expect(find.byType(DefaultRulePassedWidget), findsOneWidget);
+  });
 
   testWidgets(
     'should show DefaultRuleNotPassedWidget when rule does not pass',
@@ -55,9 +41,7 @@ void main() {
       await loadWidget(
         tester,
         value: 'test',
-        rules: {
-          UppercaseValidationRule(),
-        },
+        rules: {UppercaseValidationRule()},
       );
 
       expect(find.byType(DefaultRuleNotPassedWidget), findsOneWidget);

@@ -1,5 +1,5 @@
 import 'package:fancy_password_field/src/widget/widget.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -19,41 +19,29 @@ void main() {
     );
   }
 
-  testWidgets(
-    'should build without exploding',
-    (tester) async {
-      await loadWidget(
-        tester,
-        builder: null,
-      );
+  testWidgets('should build without exploding', (tester) async {
+    await loadWidget(tester, builder: null);
 
-      expect(find.byType(StrengthIndicatorWidget), findsOneWidget);
-    },
-  );
+    expect(find.byType(StrengthIndicatorWidget), findsOneWidget);
+  });
 
-  testWidgets(
-    'should show DefaultStrengthIndicator if builder is null',
-    (tester) async {
-      await loadWidget(
-        tester,
-        builder: null,
-      );
+  testWidgets('should show DefaultStrengthIndicator if builder is null', (
+    tester,
+  ) async {
+    await loadWidget(tester, builder: null);
 
-      expect(find.byType(DefaultStrengthIndicator), findsOneWidget);
-    },
-  );
+    expect(find.byType(DefaultStrengthIndicator), findsOneWidget);
+  });
 
-  testWidgets(
-    'should execute strengthIndicatorBuilder if one is provided',
-    (tester) async {
-      await loadWidget(
-        tester,
-        builder: (strength) => Container(
-          key: const ValueKey('widget-from-builder'),
-        ),
-      );
+  testWidgets('should execute strengthIndicatorBuilder if one is provided', (
+    tester,
+  ) async {
+    await loadWidget(
+      tester,
+      builder: (strength) =>
+          Container(key: const ValueKey('widget-from-builder')),
+    );
 
-      expect(find.byKey(const ValueKey('widget-from-builder')), findsOneWidget);
-    },
-  );
+    expect(find.byKey(const ValueKey('widget-from-builder')), findsOneWidget);
+  });
 }

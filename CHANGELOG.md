@@ -1,3 +1,27 @@
+# 3.0.0
+
+**Breaking changes**
+
+- Migrates the package to [`material_ui`](https://pub.dev/packages/material_ui). All Material types
+  exposed by the API (`InputDecoration`, `Icon`, `InputCounterWidgetBuilder`, ...) now come from
+  `package:material_ui/material_ui.dart` instead of `package:flutter/material.dart`. Apps must import
+  Material from `material_ui` to keep using `FancyPasswordField`.
+- Requires Flutter `>=3.44.0` and Dart `^3.12.0`.
+
+**Fixes**
+
+- Fixes a semantics assertion (`node.isMergedIntoParent`) thrown on Flutter 3.47 when typing into the
+  field. The widget no longer wraps itself in a `MergeSemantics`, since a text field owns a semantics
+  node that cannot be merged into an ancestor. `identifier` and `semanticsLabel` are still exposed,
+  now on a container node that keeps the text field as an explicit child.
+
+**Other**
+
+- Bumps `flutter_lints` to `^6.0.0` and reformats the sources with the Dart 3.12 formatter.
+- Adopts private named parameters for every parameter that is stored in a private field. This is
+  purely internal: the parameter names callers use (`regex:`, `customText:`, `min:`, `showName:`,
+  ...) are unchanged.
+
 # 2.0.8
 
 - Formatting files

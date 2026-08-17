@@ -1,10 +1,8 @@
 import 'package:fancy_password_field/fancy_password_field.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class Sample3 extends StatelessWidget {
-  const Sample3({
-    Key? key,
-  }) : super(key: key);
+  const Sample3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +22,22 @@ class Sample3 extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Password Strength',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
+                    Flexible(
+                      child: Text(
+                        'Password Strength',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 18, color: Colors.black),
                       ),
                     ),
-                    Text(
-                      'Average',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Color(0xFFF6A61E),
+                    Flexible(
+                      child: Text(
+                        'Average',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Color(0xFFF6A61E),
+                        ),
                       ),
                     ),
                   ],
@@ -46,14 +47,10 @@ class Sample3 extends StatelessWidget {
                   value: 0.5,
                   color: Colors.white,
                   backgroundColor: Colors.white,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    Color(0xFFF6A61E),
-                  ),
+                  valueColor: AlwaysStoppedAnimation<Color>(Color(0xFFF6A61E)),
                 ),
                 SizedBox(height: 8),
-                Text(
-                  'Your password is easily guessable. You can do better.',
-                ),
+                Text('Your password is easily guessable. You can do better.'),
                 SizedBox(height: 12),
               ],
             );

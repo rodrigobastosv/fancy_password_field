@@ -6,6 +6,21 @@
 
 FancyPasswordField is a widget that acts as a password validation field. You can have all the features of a commom password field, and also gets cool features like setting validation rules and password strength.
 
+# Requirements
+
+Starting with `3.0.0` this package is built on top of [`material_ui`][material_ui], the Material Design library that has been decoupled from the Flutter framework. It requires Flutter `3.44.0` or newer and Dart `3.12.0` or newer.
+
+Because `material_ui` ships its own copies of the Material widgets, `InputDecoration` from `package:material_ui/material_ui.dart` is a *different type* from the one in `package:flutter/material.dart`. Your app has to import Material from the same place this package does:
+
+```dart
+import 'package:fancy_password_field/fancy_password_field.dart';
+import 'package:material_ui/material_ui.dart'; // instead of package:flutter/material.dart
+```
+
+If you are not ready to move your app off `package:flutter/material.dart`, stay on `fancy_password_field: ^2.0.8`.
+
+[material_ui]: https://pub.dev/packages/material_ui
+
 # Basic Usage
 
 The most simple usage is just using FancyPasswordField withou any properties.

@@ -1,13 +1,13 @@
 import 'package:fancy_password_field/src/fancy_password_controller.dart';
 import 'package:fancy_password_field/src/validation_rule.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'widget/widget.dart';
 
 class FancyPasswordField extends StatefulWidget {
   const FancyPasswordField({
-    Key? key,
+    super.key,
     this.onChanged,
     this.onSaved,
     this.validator,
@@ -70,11 +70,14 @@ class FancyPasswordField extends StatefulWidget {
     this.restorationId,
     this.enableIMEPersonalizedLearning = true,
     this.obscureText,
-  })  : assert(showPasswordIcon == null || showPasswordWidget == null,
-            "showPasswordIcon and showPasswordWidget can't be used at the same time"),
-        assert(hidePasswordIcon == null || hidePasswordWidget == null,
-            "hidePasswordIcon and hidePasswordWidget can't be used at the same time"),
-        super(key: key);
+  }) : assert(
+         showPasswordIcon == null || showPasswordWidget == null,
+         "showPasswordIcon and showPasswordWidget can't be used at the same time",
+       ),
+       assert(
+         hidePasswordIcon == null || hidePasswordWidget == null,
+         "hidePasswordIcon and hidePasswordWidget can't be used at the same time",
+       );
 
   /// Similarly of the [onChanged] property of the [TextFormField].
   final ValueChanged<String>? onChanged;
@@ -299,9 +302,9 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
 
   @override
   void initState() {
-    _passwordController = (widget.passwordController ??
-        FancyPasswordController())
-      ..setRules(widget.validationRules);
+    _passwordController =
+        (widget.passwordController ?? FancyPasswordController())
+          ..setRules(widget.validationRules);
     // The order doesn't matter, because the TextEditingController will fail if initialValue and text are set.
     _value = widget.initialValue ?? widget.controller?.text ?? '';
     super.initState();
@@ -309,122 +312,130 @@ class _FancyPasswordFieldState extends State<FancyPasswordField> {
 
   @override
   Widget build(BuildContext context) {
-    return MergeSemantics(
-      child: Semantics(
-        identifier: widget.identifier,
-        label: widget.semanticsLabel,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: widget.decoration != null
-                  ? widget.decoration!.copyWith(
-                      suffixIcon: widget.hasShowHidePassword
-                          ? widget.decoration?.suffixIcon ??
+    // The field is deliberately *not* wrapped in a [MergeSemantics]: a text
+    // field owns a semantics node that cannot be merged into an ancestor, so
+    // merging it with the strength indicator trips an assertion in the
+    // semantics tree. [container] instead groups the field and its indicators
+    // under a single node while keeping the text field an explicit child.
+    return Semantics(
+      container: widget.identifier != null || widget.semanticsLabel != null,
+      identifier: widget.identifier,
+      label: widget.semanticsLabel,
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: widget.decoration != null
+                ? widget.decoration!.copyWith(
+                    suffixIcon: widget.hasShowHidePassword
+                        ? widget.decoration?.suffixIcon ??
                               DefaultShowHidePasswordButton(
                                 hidePassword: _hidePassword,
-                                showPasswordIcon: widget.showPasswordIcon ??
+                                showPasswordIcon:
+                                    widget.showPasswordIcon ??
                                     widget.showPasswordWidget,
-                                hidePasswordIcon: widget.hidePasswordIcon ??
+                                hidePasswordIcon:
+                                    widget.hidePasswordIcon ??
                                     widget.hidePasswordWidget,
                                 onPressed: () {
                                   setState(
-                                      () => _hidePassword = !_hidePassword);
+                                    () => _hidePassword = !_hidePassword,
+                                  );
                                 },
                               )
-                          : null,
-                    )
-                  : InputDecoration(
-                      suffixIcon: widget.hasShowHidePassword
-                          ? DefaultShowHidePasswordButton(
-                              hidePassword: _hidePassword,
-                              showPasswordIcon: widget.showPasswordIcon ??
-                                  widget.showPasswordWidget,
-                              hidePasswordIcon: widget.hidePasswordIcon ??
-                                  widget.hidePasswordWidget,
-                              onPressed: () {
-                                setState(() => _hidePassword = !_hidePassword);
-                              },
-                            )
-                          : null,
-                    ),
-              obscureText: widget.obscureText ?? _hidePassword,
-              onChanged: (changedValue) {
-                _value = changedValue;
-                if (widget.onChanged != null) {
-                  widget.onChanged!(changedValue);
-                }
-                _passwordController.onChange(changedValue);
-                setState(() {});
-              },
-              onSaved: (value) {
-                if (widget.onSaved != null) {
-                  widget.onSaved!(value);
-                }
-              },
-              validator: widget.validator != null
-                  ? (value) => widget.validator!(value)
-                  : null,
-              initialValue: widget.initialValue,
-              controller: widget.controller,
-              focusNode: widget.focusNode,
-              keyboardType: widget.keyboardType,
-              textCapitalization: widget.textCapitalization,
-              textInputAction: widget.textInputAction,
-              style: widget.style,
-              strutStyle: widget.strutStyle,
-              textDirection: widget.textDirection,
-              textAlign: widget.textAlign,
-              textAlignVertical: widget.textAlignVertical,
-              autofocus: widget.autofocus,
-              readOnly: widget.readOnly,
-              showCursor: widget.showCursor,
-              obscuringCharacter: widget.obscuringCharacter,
-              autocorrect: widget.autocorrect,
-              smartDashesType: widget.smartDashesType,
-              smartQuotesType: widget.smartQuotesType,
-              enableSuggestions: widget.enableSuggestions,
-              maxLengthEnforcement: widget.maxLengthEnforcement,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              expands: widget.expands,
-              maxLength: widget.maxLength,
-              onTap: widget.onTap,
-              onEditingComplete: widget.onEditingComplete,
-              onFieldSubmitted: widget.onFieldSubmitted,
-              inputFormatters: widget.inputFormatters,
-              enabled: widget.enabled,
-              cursorWidth: widget.cursorWidth,
-              cursorHeight: widget.cursorHeight,
-              cursorRadius: widget.cursorRadius,
-              cursorColor: widget.cursorColor,
-              keyboardAppearance: widget.keyboardAppearance,
-              scrollPadding: widget.scrollPadding,
-              enableInteractiveSelection: widget.enableInteractiveSelection,
-              selectionControls: widget.selectionControls,
-              buildCounter: widget.buildCounter,
-              scrollPhysics: widget.scrollPhysics,
-              autofillHints: widget.autofillHints,
-              autovalidateMode: widget.autovalidateMode,
-              scrollController: widget.scrollController,
-              restorationId: widget.restorationId,
-              enableIMEPersonalizedLearning:
-                  widget.enableIMEPersonalizedLearning,
+                        : null,
+                  )
+                : InputDecoration(
+                    suffixIcon: widget.hasShowHidePassword
+                        ? DefaultShowHidePasswordButton(
+                            hidePassword: _hidePassword,
+                            showPasswordIcon:
+                                widget.showPasswordIcon ??
+                                widget.showPasswordWidget,
+                            hidePasswordIcon:
+                                widget.hidePasswordIcon ??
+                                widget.hidePasswordWidget,
+                            onPressed: () {
+                              setState(() => _hidePassword = !_hidePassword);
+                            },
+                          )
+                        : null,
+                  ),
+            obscureText: widget.obscureText ?? _hidePassword,
+            onChanged: (changedValue) {
+              _value = changedValue;
+              if (widget.onChanged != null) {
+                widget.onChanged!(changedValue);
+              }
+              _passwordController.onChange(changedValue);
+              setState(() {});
+            },
+            onSaved: (value) {
+              if (widget.onSaved != null) {
+                widget.onSaved!(value);
+              }
+            },
+            validator: widget.validator != null
+                ? (value) => widget.validator!(value)
+                : null,
+            initialValue: widget.initialValue,
+            controller: widget.controller,
+            focusNode: widget.focusNode,
+            keyboardType: widget.keyboardType,
+            textCapitalization: widget.textCapitalization,
+            textInputAction: widget.textInputAction,
+            style: widget.style,
+            strutStyle: widget.strutStyle,
+            textDirection: widget.textDirection,
+            textAlign: widget.textAlign,
+            textAlignVertical: widget.textAlignVertical,
+            autofocus: widget.autofocus,
+            readOnly: widget.readOnly,
+            showCursor: widget.showCursor,
+            obscuringCharacter: widget.obscuringCharacter,
+            autocorrect: widget.autocorrect,
+            smartDashesType: widget.smartDashesType,
+            smartQuotesType: widget.smartQuotesType,
+            enableSuggestions: widget.enableSuggestions,
+            maxLengthEnforcement: widget.maxLengthEnforcement,
+            maxLines: widget.maxLines,
+            minLines: widget.minLines,
+            expands: widget.expands,
+            maxLength: widget.maxLength,
+            onTap: widget.onTap,
+            onEditingComplete: widget.onEditingComplete,
+            onFieldSubmitted: widget.onFieldSubmitted,
+            inputFormatters: widget.inputFormatters,
+            enabled: widget.enabled,
+            cursorWidth: widget.cursorWidth,
+            cursorHeight: widget.cursorHeight,
+            cursorRadius: widget.cursorRadius,
+            cursorColor: widget.cursorColor,
+            keyboardAppearance: widget.keyboardAppearance,
+            scrollPadding: widget.scrollPadding,
+            enableInteractiveSelection: widget.enableInteractiveSelection,
+            selectionControls: widget.selectionControls,
+            buildCounter: widget.buildCounter,
+            scrollPhysics: widget.scrollPhysics,
+            autofillHints: widget.autofillHints,
+            autovalidateMode: widget.autovalidateMode,
+            scrollController: widget.scrollController,
+            restorationId: widget.restorationId,
+            enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+          ),
+          if (widget.hasStrengthIndicator && _value.isNotEmpty)
+            StrengthIndicatorWidget(
+              password: _value,
+              strengthIndicatorBuilder: widget.strengthIndicatorBuilder,
             ),
-            if (widget.hasStrengthIndicator && _value.isNotEmpty)
-              StrengthIndicatorWidget(
+          if (widget.hasValidationRules && widget.validationRules.isNotEmpty)
+            ExcludeSemantics(
+              child: ValidationRulesWidget(
                 password: _value,
-                strengthIndicatorBuilder: widget.strengthIndicatorBuilder,
+                validationRules: widget.validationRules,
+                validationRuleBuilder: widget.validationRuleBuilder,
               ),
-            if (widget.hasValidationRules && widget.validationRules.isNotEmpty)
-              ExcludeSemantics(
-                child: ValidationRulesWidget(
-                  password: _value,
-                  validationRules: widget.validationRules,
-                  validationRuleBuilder: widget.validationRuleBuilder,
-                ),
-              ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
